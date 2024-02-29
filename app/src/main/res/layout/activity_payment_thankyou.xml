@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.Payment_Thankyou">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order Confirm"
+        android:textSize="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/app"
+        android:id="@+id/t1"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/order_confirm"
+        android:layout_height="300dp"
+        android:layout_below="@id/t1"
+        android:layout_marginTop="50dp"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/paymentthankyou"
+        app:lottie_repeatMode="restart"
+        app:lottie_repeatCount="50"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_confirm"
+        android:layout_marginTop="20dp"
+        android:text="Your Order is Confirm"
+        android:textColor="@color/app"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/t2"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/t2"
+        android:text="Thank You For Ordering"
+        android:textSize="20dp"
+        android:textColor="@color/app"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"/>
+</RelativeLayout>

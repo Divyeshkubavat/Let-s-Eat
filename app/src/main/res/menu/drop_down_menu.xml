@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item app:showAsAction="always"
+        android:icon="@drawable/baseline_more_vert_24"
+        android:title=" ">
+        <menu>
+            <item android:title="Login"
+                android:id="@+id/dro_login"
+                android:icon="@drawable/baseline_login_24"
+                app:showAsAction="never"/>
+            <item android:title="Register"
+                android:id="@+id/dro_register"
+                android:icon="@drawable/baseline_person_add_24"
+                app:showAsAction="never"/>
+            <item android:title="Settings"
+                android:id="@+id/dro_setting"
+                android:icon="@drawable/baseline_settings_24"
+                app:showAsAction="never"/>
+        </menu>
+    </item>
+</menu>

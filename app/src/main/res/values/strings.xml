@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Let\'s Eat</string>
+    <string name="app">Let\'s eat</string>
+    <string name="username">Username</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".Activities.User_Home_Product_View_Design"
+    android:layout_margin="@dimen/_6sdp"
+    app:cardElevation="@dimen/_16sdp"
+    app:cardCornerRadius="@dimen/_15sdp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/_8sdp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/_88sdp"
+            android:layout_height="@dimen/_88sdp"
+            android:src="@drawable/a"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/User_Home_Product_View_Design_Image"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AlooTikki Burger"
+            android:id="@+id/User_Home_Product_View_Design_Name"
+            android:layout_below="@id/User_Home_Product_View_Design_Image"
+            android:textSize="@dimen/_12sdp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/_4sdp"
+            android:textColor="@color/app"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price : 100rs"
+            android:id="@+id/User_Home_Product_View_Design_Price"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/_6sdp"
+            android:layout_below="@id/User_Home_Product_View_Design_Name"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="#E53935" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

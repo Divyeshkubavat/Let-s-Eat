@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.User_Pizza_Explore">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/app"
+                android:text="--: PIZZA :--"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/_25sdp"
+                android:padding="@dimen/_5sdp"
+                android:layout_margin="@dimen/_20sdp"/>
+            <androidx.appcompat.widget.SearchView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_44sdp"
+                android:hint="Search here"
+                android:id="@+id/User_Pizza_Explore_Searchview"
+                app:iconifiedByDefault="false"
+                android:layout_marginLeft="@dimen/_12sdp"
+                android:layout_marginRight="@dimen/_12sdp"
+                android:background="@drawable/search_design"
+                android:textAppearance="@color/white"
+                app:queryHint="Search here ...."/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/User_Pizza_Explore_Recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_5sdp"
+                tools:listitem="@layout/activity_user_product_view_design" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

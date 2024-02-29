@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/background"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.LetsEat"
+        tools:targetApi="31">
+        <activity
+            android:name=".Activities.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Cart_Product_Design"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Home_Product_View_Design"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Account_Payment_History_Design"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Account_Payment_History"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Account_Edit_Profile"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Home_Screen_Search"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Drink_Explore"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Combo_Explore"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Pizza_Explore"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Product_view_Design"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Burger_Explore"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Address"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Registration"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Login"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Splash_Screen"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.payment_history"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Order_History"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Order_Design"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Payment_Thankyou"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.payment_design"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Payment"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Add_Product_Cart"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

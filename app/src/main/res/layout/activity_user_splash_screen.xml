@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#281818"
+    tools:context="Activities.User_Splash_Screen">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical">
+            <TextView
+                android:id="@+id/User_Splash_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.TextView"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="casual"
+                android:layout_marginTop="@dimen/_minus60sdp"
+                android:text="Let's Eat"
+                android:textColor="#FEC552"
+                android:textSize="@dimen/_55sdp" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_marginTop="@dimen/_110sdp"
+                android:layout_width="match_parent"
+                app:lottie_repeatMode="restart"
+                app:lottie_repeatCount="50"
+                android:layout_height="@dimen/_220sdp"
+                app:lottie_autoPlay="true"
+                app:lottie_rawRes="@raw/splas_screen"
+                android:id="@+id/User_Splash_Animation"
+                tools:ignore="MissingClass" />
+
+            <com.example.swipebutton_library.SwipeButton
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_below="@id/User_Splash_Animation"
+                android:layout_marginLeft="@dimen/_30sdp"
+                android:id="@+id/User_Splash_Swipebutton"
+                app:button_height="@dimen/_50sdp"
+                app:button_width="@dimen/_50sdp"
+                app:button_background_tint="@color/button"
+                android:layout_marginRight="@dimen/_30sdp"
+                app:button_background_drawable="@drawable/shape_button"
+                app:inner_text="I AM HUNGRY"
+                android:layout_marginTop="@dimen/_60sdp"
+                app:trail_background_tint="@color/button"
+                app:outer_background_drawable="@drawable/shape_background"
+                app:has_active_status="false"
+                app:inner_text_size="@dimen/_16sdp"
+                app:outer_background_height="@dimen/_50sdp"/>
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
