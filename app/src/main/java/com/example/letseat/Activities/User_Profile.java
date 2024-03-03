@@ -46,6 +46,18 @@ public class User_Profile extends Fragment {
         User_Account_Logout_button=view.findViewById(R.id.User_Account_Logout_Button);
         User_Account_Order_button=view.findViewById(R.id.User_Account_Order_Button);
         User_Account_Payment_button=view.findViewById(R.id.User_Account_Payment_Button);
+        User_Account_Order_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), User_Account_Order.class));
+            }
+        });
+        User_Account_Payment_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(),User_Account_Payment_History.class));
+            }
+        });
         User_Account_Logout_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

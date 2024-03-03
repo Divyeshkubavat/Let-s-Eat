@@ -12,9 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/scrollview">
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
             <androidx.cardview.widget.CardView
                 android:id="@+id/User_Home_Cardview"
                 android:layout_width="match_parent"
@@ -247,27 +248,23 @@
                     </RelativeLayout>
                 </ScrollView>
             </RelativeLayout>
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:layout_width="@dimen/_280sdp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_50sdp"
                 android:id="@+id/BackToTop"
                 android:text="Back To Top"
-                android:background="@drawable/shape_button"
                 android:backgroundTint="@color/white"
+                app:cornerRadius="@dimen/_20sdp"
                 android:textColor="@color/app"
                 android:layout_marginTop="@dimen/_24sdp"
                 android:textSize="@dimen/_16sdp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginRight="@dimen/_40sdp"
-                android:layout_marginLeft="@dimen/_40sdp"
-                android:layout_below="@id/h4"
+                android:layout_gravity="center_horizontal"
                 android:elevation="@dimen/_16sdp"/>
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_128sdp"
                 android:layout_below="@id/BackToTop"
                 android:background="@color/app"/>
-        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
 </RelativeLayout>

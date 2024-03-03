@@ -48,12 +48,12 @@
                 android:layout_marginRight="@dimen/_30sdp"
                 app:button_background_drawable="@drawable/shape_button"
                 app:inner_text="I AM HUNGRY"
-                android:layout_marginTop="@dimen/_60sdp"
+                android:layout_marginTop="@dimen/_90sdp"
                 app:trail_background_tint="@color/button"
                 app:outer_background_drawable="@drawable/shape_background"
                 app:has_active_status="false"
                 app:inner_text_size="@dimen/_16sdp"
-                app:outer_background_height="@dimen/_50sdp"/>
+                app:outer_background_height="@dimen/_50sdp" />
         </RelativeLayout>
     </ScrollView>
 

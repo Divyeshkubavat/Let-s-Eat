@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.User_Current_Location"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_marginTop="@dimen/_70sdp">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:lottie_autoPlay="true"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_centerHorizontal="true"
+        app:lottie_rawRes="@raw/location"
+        android:id="@+id/User_Current_Location_Animation"
+        app:lottie_repeatCount="50"
+        tools:ignore="MissingClass"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/User_Current_Location_Textview_2"
+        android:backgroundTint="@color/button"
+        android:textColor="#C62828"
+        android:textStyle="bold"
+        android:textSize="@dimen/_20sdp"/>
+    <TextView
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="wrap_content"
+        android:id="@+id/User_Current_Location_Textview"
+        android:backgroundTint="@color/button"
+        android:textColor="@color/app"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:textSize="@dimen/_14sdp"/>
+
+</LinearLayout>

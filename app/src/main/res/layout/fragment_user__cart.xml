@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Activities.User_Cart">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -62,14 +63,14 @@
             android:textColor="@color/app"
             android:layout_weight="1"
             android:textStyle="bold"/>
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:layout_width="150dp"
             android:id="@+id/cart_check_out"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_button"
             android:text="Checkout"
             android:textStyle="bold"
             android:textColor="@color/black"
+            app:cornerRadius="@dimen/_20sdp"
             android:backgroundTint="@color/button"
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"

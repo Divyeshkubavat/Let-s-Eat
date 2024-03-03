@@ -51,6 +51,10 @@ public class User_Home extends Fragment {
                 {
                     startActivity(new Intent(getContext().getApplicationContext(),User_Home_Screen_Search.class));
                 }
+                if(id == R.id.User_Home_Screen_Filter)
+                {
+                    startActivity(new Intent(getContext().getApplicationContext(),User_Product_Filter.class));
+                }
                 return false;
             }
         });

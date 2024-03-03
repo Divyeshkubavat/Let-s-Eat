@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +17,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LetsEat"
         tools:targetApi="31">
+        <activity
+            android:name=".User_Home_Filter"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Splash_Screen"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Current_Location"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Account_Order_Design"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Account_Order"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Product_Payment"
+            android:exported="false" />
         <activity
             android:name=".Activities.MainActivity"
             android:exported="false" />
@@ -62,31 +81,21 @@
             android:name=".Activities.User_Login"
             android:exported="false" />
         <activity
-            android:name=".Activities.User_Splash_Screen"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.payment_history"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.Order_History"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.Order_Design"
+            android:name=".Activities.User_Account_Order_Detail"
             android:exported="false" />
         <activity
             android:name=".Activities.Payment_Thankyou"
             android:exported="false" />
         <activity
-            android:name=".Activities.payment_design"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.Payment"
-            android:exported="false" />
-        <activity
             android:name=".Activities.User_Add_Product_Cart"
-            android:exported="true">
+            android:exported="false" />
+        <activity
+            android:name=".Activities.User_Product_Filter"
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -1,7 +1,7 @@
+
 plugins {
     id 'com.android.application'
 }
-
 android {
     namespace 'com.example.letseat'
     compileSdk 34
@@ -50,5 +50,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.8'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'com.karumi:dexter:6.2.3'
+    implementation 'com.razorpay:checkout:1.6.33'
+    implementation 'com.google.android.gms:play-services-location:21.1.0'
+
 
 }

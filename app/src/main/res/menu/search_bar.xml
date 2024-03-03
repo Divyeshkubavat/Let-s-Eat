@@ -6,4 +6,10 @@
          android:icon="@drawable/baseline_search_24"
         app:showAsAction="always"
         android:title="TODO" />
+    <item
+        android:id="@+id/User_Home_Screen_Filter"
+        android:icon="@drawable/filter"
+        app:showAsAction="always"
+        android:iconTint="@color/white"
+        android:title="TODO"/>
 </menu>
