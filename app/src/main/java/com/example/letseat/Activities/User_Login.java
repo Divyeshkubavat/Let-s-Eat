@@ -3,8 +3,10 @@ package com.example.letseat.Activities;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,13 +17,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.letseat.Model.Login;
+import com.example.letseat.Model.User;
 import com.example.letseat.R;
 import com.example.letseat.Retrofit.RetrofitServices;
 import com.example.letseat.Retrofit.UserApi;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,6 +57,7 @@ public class User_Login extends AppCompatActivity {
         User_Login_Signup=findViewById(R.id.User_Login_Signup);
         retrofitServices = new RetrofitServices();
         userApi = retrofitServices.getRetrofit().create(UserApi.class);
+        getSingleUserData();
        User_Login_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,8 +83,14 @@ public class User_Login extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),User_Registration.class));
             }
         });
-    }
 
+        SharedPreferences preferences = getSharedPreferences("Login",MODE_PRIVATE);
+        String Login_Mobile = preferences.getString("Login_Mobile","");
+        /*if(Login_Mobile.equals(""))
+        {
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        }*/
+    }
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -138,24 +147,45 @@ public class User_Login extends AppCompatActivity {
             userApi.Verify(login).enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
-                    if(Objects.equals(response.body(), "404"))
+                    String temp = String.valueOf(response.code());
+                    if(temp.equals("404"))
                     {
-                        Toast.makeText(User_Login.this, "User Noy ", Toast.LENGTH_SHORT).show();
-                    } else if (Objects.equals(response.body(), "401")) {
+                        Toast.makeText(User_Login.this, "User Not Found ", Toast.LENGTH_SHORT).show();
+                        User_Login_Progressbar.cancel();
+
+                    } else if (temp.equals("401")) {
                         Toast.makeText(User_Login.this, "Password Incorect", Toast.LENGTH_SHORT).show();
+                        User_Login_Progressbar.cancel();
                     }else
                     {
+                        SharedPreferences preferences = getSharedPreferences("Login",MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("Login_Mobile",Id);
+                        editor.commit();
                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
                     }
                 }
-
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
 
                 }
             });
         }
+    }
+    public void getSingleUserData(){
+        userApi.getSingleUser(1).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                String name = response.body().getName();
+                String pass = response.body().getPassword();
+                String mobile = String.valueOf(response.body().getMobileNo());
+                Log.e("Single",name+" "+pass+" "+mobile);
+            }
 
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
 
+            }
+        });
     }
 }
