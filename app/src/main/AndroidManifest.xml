@@ -13,6 +13,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/background"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LetsEat"
@@ -75,7 +76,7 @@
             android:name=".Activities.User_Address"
             android:exported="false" />
         <activity
-            android:name=".Activities.User_Registration"
+            android:name=".Activities.User_Product_Filter"
             android:exported="false" />
         <activity
             android:name=".Activities.User_Login"
@@ -90,7 +91,7 @@
             android:name=".Activities.User_Add_Product_Cart"
             android:exported="false" />
         <activity
-            android:name=".Activities.User_Product_Filter"
+            android:name=".Activities.User_Registration"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>

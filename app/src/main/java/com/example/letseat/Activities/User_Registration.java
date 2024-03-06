@@ -8,12 +8,24 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.letseat.Model.User;
 import com.example.letseat.R;
+import com.example.letseat.Retrofit.RetrofitServices;
+import com.example.letseat.Retrofit.UserApi;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class User_Registration extends AppCompatActivity {
 
@@ -26,7 +38,7 @@ public class User_Registration extends AppCompatActivity {
 
     private ProgressDialog User_Registration_Progressbar;
 
-    boolean ischeck = false;
+    boolean ischeck = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +54,33 @@ public class User_Registration extends AppCompatActivity {
         User_Registration_Mobile=findViewById(R.id.User_Registration_Mobile);
         User_Registration_Pass=findViewById(R.id.User_Registration_Pass);
         User_Reistration_Button = findViewById(R.id.User_Registration_Button);
+        RetrofitServices retrofitServices = new RetrofitServices();
+        UserApi userApi = retrofitServices.getRetrofit().create(UserApi.class);
 
         User_Reistration_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ischeck=check();
+                //ischeck=check();
                 if(ischeck)
                 {
-                    startActivity(new Intent(getApplicationContext(),User_Address.class));
+                    User user = new User();
+                    user.setName("Divyesh");
+                    user.setAddress("Sitanagar");
+                    user.setEmail("dkubavat0@gmail.com");
+                    user.setMobileNo(Long.parseLong("9904037428"));
+                    user.setDateOfBirth("2003/12/12");
+                    user.setPassword("diyesh123");
+                    userApi.save(user).enqueue(new Callback<User>() {
+                        @Override
+                        public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+                            Toast.makeText(User_Registration.this, response+"Save Successfull", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(Call<User> call, Throwable t) {
+                            Toast.makeText(User_Registration.this, "Sorry", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
         });
