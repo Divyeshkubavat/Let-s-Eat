@@ -10,12 +10,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.letseat.Model.User;
 import com.example.letseat.R;
+import com.example.letseat.Retrofit.RetrofitServices;
+import com.example.letseat.Retrofit.UserApi;
 
 import java.util.Calendar;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class User_Address extends AppCompatActivity {
 
@@ -24,7 +32,8 @@ public class User_Address extends AppCompatActivity {
     ProgressDialog pg;
     EditText User_Address_Address,User_Address_DOB;
     Button User_Address_Button;
-
+    RetrofitServices retrofitServices;
+    UserApi userApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +46,14 @@ public class User_Address extends AppCompatActivity {
         User_Address_Address =findViewById(R.id.User_Address_Address);
         User_Address_DOB = findViewById(R.id.User_Address_DOB);
         User_Address_Button=findViewById(R.id.User_Address_Button);
+
+        retrofitServices = new RetrofitServices();
+        userApi = retrofitServices.getRetrofit().create(UserApi.class);
+
         User_Address_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ischeck=check();
-                if(ischeck)
-                {
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                }
+                sendData();
             }
         });
         User_Address_DOB.setFocusable(false);
@@ -83,5 +92,44 @@ public class User_Address extends AppCompatActivity {
             return  false;
         }
         return  true;
+    }
+    public void sendData()
+    {
+        String name,pass,email,address,date;
+        String mobile;
+        Intent intent = getIntent();
+        name= intent.getStringExtra("User_Name");
+        pass = intent.getStringExtra("User_Pass");
+        email = intent.getStringExtra("User_Email");
+        mobile = intent.getStringExtra("User_Mobile");
+        address=User_Address_Address.getText().toString();
+        date=User_Address_DOB.getText().toString();
+        ischeck = check();
+        if(ischeck)
+        {
+            User u = new User();
+            u.setMobileNo(Long.parseLong(mobile));
+            u.setName(name);
+            u.setEmail(email);
+            u.setPassword(pass);
+            u.setAddress(address);
+            u.setDateOfBirth(date);
+            userApi.save(u).enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    Toast.makeText(User_Address.this, "Registration Successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), User_Login.class));
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Toast.makeText(User_Address.this, "Mobile Number Already Exist", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            });
+        }else
+        {
+            Toast.makeText(this, "Fill All The Field", Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -1,8 +1,10 @@
-package com.example.letseat;
+package com.example.letseat.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.letseat.R;
 
 public class User_Home_Filter extends AppCompatActivity {
 

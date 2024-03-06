@@ -40,11 +40,10 @@ public class User_Splash_Screen extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), User_Login.class);
                         startActivity(intent);
                     }
                 },100);
-
             }
         });
 

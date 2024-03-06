@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".User_Home_Filter">
+    tools:context=".Activities.User_Home_Filter">
 
     <ScrollView
         android:layout_width="match_parent"

@@ -3,26 +3,15 @@ package com.example.letseat.Model;
 import java.util.Date;
 
 public class User {
-        private int id;
-        private String name;
-        private long mobileNo;
-        private String email;
-        private String password;
-        private String address;
-        private String dateOfBirth;
-
-    public User(int id, String name, long mobileNo, String email, String password, String address, String dateOfBirth) {
-        this.id = id;
-        this.name = name;
-        this.mobileNo = mobileNo;
-        this.email = email;
-        this.password = password;
-        this.address = address;
-        this.dateOfBirth = dateOfBirth;
-    }
+    private int id;
+    private String name;
+    private long mobileNo;
+    private String email;
+    private String password;
+    private String address;
+    private String dateOfBirth;
 
     public User() {
-
     }
 
     public int getId() {
@@ -72,6 +61,7 @@ public class User {
     public void setAddress(String address) {
         this.address = address;
     }
+
     public String getDateOfBirth() {
         return dateOfBirth;
     }

@@ -1,9 +1,12 @@
 package com.example.letseat.Activities;
 
+import static java.lang.Long.parseLong;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -20,9 +23,17 @@ import com.example.letseat.Retrofit.RetrofitServices;
 import com.example.letseat.Retrofit.UserApi;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+import okhttp3.Address;
+import okhttp3.FormBody;
+import okhttp3.OkHttp;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,12 +44,19 @@ public class User_Registration extends AppCompatActivity {
     TextInputEditText User_Registration_Mobile,User_Registration_Pass,User_Registration_Email,User_Registration_Fullname;
     Button User_Reistration_Button;
     TextView User_Registration_Login;
+
+
+    RetrofitServices retrofitServices;
+    List<User> user;
+    UserApi userApi;
     String User_New_UID;
     SharedPreferences User_Registration_Check_UID;
 
     private ProgressDialog User_Registration_Progressbar;
+    TextView registrartiontext;
 
-    boolean ischeck = true;
+    boolean ischeck = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,46 +71,31 @@ public class User_Registration extends AppCompatActivity {
         User_Registration_Email = findViewById(R.id.User_Registration_Email);
         User_Registration_Mobile=findViewById(R.id.User_Registration_Mobile);
         User_Registration_Pass=findViewById(R.id.User_Registration_Pass);
+
+        User_Registration_Fullname.setText("");
+        User_Registration_Email.setText("");
+        User_Registration_Mobile.setText("");
+        User_Registration_Pass.setText("");
         User_Reistration_Button = findViewById(R.id.User_Registration_Button);
-        RetrofitServices retrofitServices = new RetrofitServices();
-        UserApi userApi = retrofitServices.getRetrofit().create(UserApi.class);
+        registrartiontext = findViewById(R.id.registrartiontext);
 
         User_Reistration_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //ischeck=check();
+                ischeck=check();
                 if(ischeck)
                 {
-                    User user = new User();
-                    user.setName("Divyesh");
-                    user.setAddress("Sitanagar");
-                    user.setEmail("dkubavat0@gmail.com");
-                    user.setMobileNo(Long.parseLong("9904037428"));
-                    user.setDateOfBirth("2003/12/12");
-                    user.setPassword("diyesh123");
-                    userApi.save(user).enqueue(new Callback<User>() {
-                        @Override
-                        public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
-                            Toast.makeText(User_Registration.this, response+"Save Successfull", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onFailure(Call<User> call, Throwable t) {
-                            Toast.makeText(User_Registration.this, "Sorry", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    sendData();
                 }
+
             }
         });
-
         User_Registration_Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(),User_Login.class));
             }
         });
-
-
     }
     private boolean check() {
         if(User_Registration_Fullname.length() == 0)
@@ -130,5 +133,20 @@ public class User_Registration extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+    public void sendData() {
+        String name,pass,email;
+        String mobile;
+        name = User_Registration_Fullname.getText().toString();
+        pass = User_Registration_Pass.getText().toString();
+        email = User_Registration_Email.getText().toString();
+        mobile = User_Registration_Mobile.getText().toString();
+
+        Intent intent = new Intent(getApplicationContext(), User_Address.class);
+        intent.putExtra("User_Name",name);
+        intent.putExtra("User_Pass",pass);
+        intent.putExtra("User_Email",email);
+        intent.putExtra("User_Mobile",mobile);
+        startActivity(intent);
     }
 }
