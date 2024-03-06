@@ -21,6 +21,7 @@ import com.example.letseat.Retrofit.UserApi;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -137,10 +138,10 @@ public class User_Login extends AppCompatActivity {
             userApi.Verify(login).enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
-                    if(response.body().equals("401"))
+                    if(Objects.equals(response.body(), "404"))
                     {
                         Toast.makeText(User_Login.this, "User Noy ", Toast.LENGTH_SHORT).show();
-                    } else if (response.body().equals("401")) {
+                    } else if (Objects.equals(response.body(), "401")) {
                         Toast.makeText(User_Login.this, "Password Incorect", Toast.LENGTH_SHORT).show();
                     }else
                     {
