@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "193875290109",
+    "project_id": "let-seat-f6dd6",
+    "storage_bucket": "let-seat-f6dd6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193875290109:android:a5d4a174371b2d5b939b94",
+        "android_client_info": {
+          "package_name": "com.example.letseat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDexlZyaXznHnY-Qeg3NaGbJP3DJs7TNAc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193875290109:android:55dca3847e0ae4f3939b94",
+        "android_client_info": {
+          "package_name": "com.example.letseatadmin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDexlZyaXznHnY-Qeg3NaGbJP3DJs7TNAc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
