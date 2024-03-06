@@ -14,7 +14,7 @@ public class RetrofitServices {
     private void initializedRetrofit() {
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/user/")
+                .baseUrl("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/")
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
                 .build();
     }
