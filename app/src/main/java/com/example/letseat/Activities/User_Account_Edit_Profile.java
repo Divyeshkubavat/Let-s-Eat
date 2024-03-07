@@ -48,6 +48,8 @@ public class User_Account_Edit_Profile extends AppCompatActivity {
         User_Account_Edit_Name=findViewById(R.id.User_Account_Edit_Name);
         User_Account_Edit_Mobile=findViewById(R.id.User_Account_Edit_Mobile);
         User_Account_Update_Button=findViewById(R.id.User_Account_Update_Button);
+        User_Account_Edit_DOB.setFocusable(false);
+        User_Account_Edit_DOB.setClickable(true);
         SharedPreferences preferences =getSharedPreferences("Login", MODE_PRIVATE);
         Login_Mobile = preferences.getString("Login_Mobile","");
         retrofitServices = new RetrofitServices();
@@ -81,7 +83,7 @@ public class User_Account_Edit_Profile extends AppCompatActivity {
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog dialog = new DatePickerDialog(getApplicationContext(), android.R.style.Theme_Holo_Dialog_MinWidth,SetDate,year,month,day);
+                DatePickerDialog dialog = new DatePickerDialog(User_Account_Edit_Profile.this, android.R.style.Theme_Holo_Dialog_MinWidth,SetDate,year,month,day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.TRANSPARENT)));
                 dialog.show();
             }
