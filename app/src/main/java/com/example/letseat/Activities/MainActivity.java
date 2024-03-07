@@ -38,16 +38,13 @@ public class MainActivity extends AppCompatActivity {
                 {
                     case  R.id.User_Home:
                         fragment = new User_Home();
-                        Toast.makeText(MainActivity.this, item.getItemId(), Toast.LENGTH_SHORT).show();
                         break;
                     case  R.id.User_Cart:
                         fragment = new User_Cart();
-                        Toast.makeText(MainActivity.this, item.getItemId(), Toast.LENGTH_SHORT).show();
 
                         break;
                     case  R.id.User_Profile:
                         fragment = new User_Profile();
-                        Toast.makeText(MainActivity.this, item.getItemId(), Toast.LENGTH_SHORT).show();
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.body_container,fragment).commit();
                 return true;

@@ -1,6 +1,7 @@
 package com.example.letseat.Activities;
 
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -13,10 +14,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.letseat.Model.User;
 import com.example.letseat.R;
+import com.example.letseat.Retrofit.RetrofitServices;
+import com.example.letseat.Retrofit.UserApi;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class User_Account_Edit_Profile extends AppCompatActivity {
 
@@ -24,6 +33,9 @@ public class User_Account_Edit_Profile extends AppCompatActivity {
     Button User_Account_Update_Button;
     boolean isCheck = false;
     private DatePickerDialog.OnDateSetListener SetDate;
+    String Login_Mobile;
+    RetrofitServices retrofitServices;
+    UserApi userApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +48,21 @@ public class User_Account_Edit_Profile extends AppCompatActivity {
         User_Account_Edit_Name=findViewById(R.id.User_Account_Edit_Name);
         User_Account_Edit_Mobile=findViewById(R.id.User_Account_Edit_Mobile);
         User_Account_Update_Button=findViewById(R.id.User_Account_Update_Button);
+        SharedPreferences preferences =getSharedPreferences("Login", MODE_PRIVATE);
+        Login_Mobile = preferences.getString("Login_Mobile","");
+        retrofitServices = new RetrofitServices();
+        userApi = retrofitServices.getRetrofit().create(UserApi.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             User_Account_Edit_Mobile.setFocusable(View.NOT_FOCUSABLE);
         }
+        getSingleUserData();
 
+        User_Account_Edit_Mobile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(User_Account_Edit_Mobile,"You Not Change Mobile Number",Snackbar.LENGTH_SHORT).show();
+            }
+        });
         User_Account_Update_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,5 +143,30 @@ public class User_Account_Edit_Profile extends AppCompatActivity {
             return  false;
         }
         return  true;
+    }
+    public void getSingleUserData(){
+        userApi.getSingleUser(30).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                String name = response.body().getName();
+                String pass = response.body().getPassword();
+                String mobile = String.valueOf(response.body().getMobileNo());
+                String address = response.body().getAddress();
+                String dob = response.body().getDateOfBirth();
+                String email = response.body().getEmail();
+
+                User_Account_Edit_DOB.setText(dob);
+                User_Account_Edit_Address.setText(address);
+                User_Account_Edit_Email.setText(email);
+                User_Account_Edit_Mobile.setText(mobile);
+                User_Account_Edit_Name.setText(name);
+                User_Account_Edit_Pass.setText(pass);
+
+            }
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
     }
 }

@@ -42,6 +42,7 @@ public class User_Login extends AppCompatActivity {
 
     List<Login> Login_List;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,10 +87,10 @@ public class User_Login extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences("Login",MODE_PRIVATE);
         String Login_Mobile = preferences.getString("Login_Mobile","");
-        /*if(Login_Mobile.equals(""))
+        if(Login_Mobile.equals(""))
         {
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
-        }*/
+        }
     }
     @Override
     public void onBackPressed() {
@@ -179,7 +180,7 @@ public class User_Login extends AppCompatActivity {
                 String name = response.body().getName();
                 String pass = response.body().getPassword();
                 String mobile = String.valueOf(response.body().getMobileNo());
-                Log.e("Single",name+" "+pass+" "+mobile);
+
             }
 
             @Override
