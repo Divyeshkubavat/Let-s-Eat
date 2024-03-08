@@ -8,6 +8,7 @@ import android.provider.SyncStateContract;
 
 import com.example.letseat.Model.Login;
 import com.example.letseat.Model.Offer;
+import com.example.letseat.Model.Product;
 import com.example.letseat.Model.User;
 
 import java.util.List;
@@ -50,4 +51,9 @@ public interface UserApi {
 
     @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/offer/get-all")
     Call<List<Offer>> getAllOffer();
+
+    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/product/get-by-category-id")
+    Call<List<Product>> getSingleProduct(
+            @Query("categoryId") int id
+    );
 }

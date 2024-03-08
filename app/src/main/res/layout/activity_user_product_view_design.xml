@@ -5,9 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".Activities.User_Product_view_Design"
-    app:cardCornerRadius="@dimen/_16sdp"
-    android:layout_margin="@dimen/_3sdp"
-    app:cardElevation="@dimen/_20sdp">
+    android:backgroundTint="@color/white"
+    android:background="@color/white"
+    app:cardCornerRadius="@dimen/_5sdp"
+   android:layout_marginLeft="@dimen/_3sdp"
+    android:layout_marginRight="@dimen/_3sdp"
+    android:layout_marginTop="@dimen/_2sdp"
+    android:layout_marginBottom="@dimen/_1sdp"
+    app:cardElevation="@dimen/_10sdp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,8 +28,8 @@
                 android:orientation="horizontal">
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/Admin_Product_Design_Image"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_80sdp"
+                    android:layout_width="@dimen/_65sdp"
+                    android:layout_height="@dimen/_65sdp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_6sdp"
                     android:layout_marginTop="@dimen/_6sdp"
@@ -44,7 +49,7 @@
                         android:layout_width="@dimen/_160sdp"
                         android:layout_height="wrap_content"
                         android:text="Cheese Burger"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_11sdp"
                         android:textStyle="bold"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:textColor="@color/app"
@@ -53,7 +58,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="100 RS"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_11sdp"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_4sdp"
                         android:textStyle="bold"
@@ -67,7 +72,7 @@
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_4sdp"
                         android:textStyle="bold"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_11sdp"
                         android:textColor="@color/app" />
                 </LinearLayout>
             </LinearLayout>

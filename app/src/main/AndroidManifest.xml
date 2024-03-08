@@ -96,6 +96,7 @@
         <activity
             android:name=".Activities.User_Splash_Screen"
             android:exported="true"
+            android:launchMode="standard"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

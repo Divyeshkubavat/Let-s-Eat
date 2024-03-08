@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Activities.User_Drink_Explore">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -46,12 +46,16 @@
                     app:tint="@color/app"
                     android:layout_toEndOf="@id/User_Pizza_Explore_Searchview" />
             </LinearLayout>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/User_Drink_Explore_Recyclerview"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/_5sdp"
-                tools:listitem="@layout/activity_user_product_view_design" />
+                android:layout_height="match_parent">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/User_Drink_Explore_Recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_5sdp"
+                    tools:listitem="@layout/activity_user_product_view_design" />
+            </ScrollView>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -91,7 +91,6 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:id="@+id/User_Home_Burger_Recyclerview"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             android:layout_marginBottom="@dimen/_8sdp"
                             tools:listitem="@layout/activity_user_home_product_view_design"/>
                     </RelativeLayout>
@@ -143,7 +142,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             android:id="@+id/User_Home_Pizza_Recyclerview"
                             android:layout_marginBottom="@dimen/_8sdp"
                             tools:listitem="@layout/activity_user_home_product_view_design"/>
@@ -196,7 +194,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
                             android:id="@+id/User_Home_Combo_Recyclerview"
                             android:layout_marginBottom="@dimen/_8sdp"
@@ -249,7 +246,6 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
                             android:orientation="horizontal"
                             android:id="@+id/User_Home_Drink_Recyclerview"
