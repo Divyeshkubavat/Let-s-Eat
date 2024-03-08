@@ -22,6 +22,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,6 +37,7 @@ public class User_Account_Edit_Profile extends AppCompatActivity {
     String Login_Mobile;
     RetrofitServices retrofitServices;
     UserApi userApi;
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,6 @@ public class User_Account_Edit_Profile extends AppCompatActivity {
             User_Account_Edit_Mobile.setFocusable(View.NOT_FOCUSABLE);
         }
         getSingleUserData();
-
         User_Account_Edit_Mobile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,8 +72,7 @@ public class User_Account_Edit_Profile extends AppCompatActivity {
                 isCheck=check();
                 if(isCheck)
                 {
-                    Toast.makeText(User_Account_Edit_Profile.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
-                    finish();
+                    updateUser();
                 }
             }
         });
@@ -147,7 +147,9 @@ public class User_Account_Edit_Profile extends AppCompatActivity {
         return  true;
     }
     public void getSingleUserData(){
-        userApi.getSingleUser(30).enqueue(new Callback<User>() {
+        SharedPreferences preferences = getSharedPreferences("Login",MODE_PRIVATE);
+        long Login_Mobile = Long.parseLong(preferences.getString("Login_Mobile",""));
+        userApi.getSingleUser(Login_Mobile).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 String name = response.body().getName();
@@ -156,6 +158,7 @@ public class User_Account_Edit_Profile extends AppCompatActivity {
                 String address = response.body().getAddress();
                 String dob = response.body().getDateOfBirth();
                 String email = response.body().getEmail();
+                id=response.body().getId();
 
                 User_Account_Edit_DOB.setText(dob);
                 User_Account_Edit_Address.setText(address);
@@ -170,5 +173,35 @@ public class User_Account_Edit_Profile extends AppCompatActivity {
 
             }
         });
+    }
+    public void updateUser(){
+        String name,pass,email,date,mobile,address;
+        name = User_Account_Edit_Name.getText().toString();
+        pass = User_Account_Edit_Pass.getText().toString();
+        email=User_Account_Edit_Email.getText().toString();
+        mobile=User_Account_Edit_Mobile.getText().toString();
+        address=User_Account_Edit_Address.getText().toString();
+        date = User_Account_Edit_DOB.getText().toString();
+
+        User user = new User();
+        user.setAddress(address);
+        user.setName(name);
+        user.setPassword(pass);
+        user.setDateOfBirth(date);
+        user.setEmail(email);
+        user.setMobileNo(Long.parseLong(mobile));
+        userApi.updateProfile(id,user).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                Toast.makeText(User_Account_Edit_Profile.this, "Profile Update Successfully", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(User_Account_Edit_Profile.this, "Sorry Profile Not Update", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }

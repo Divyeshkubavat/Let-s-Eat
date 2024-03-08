@@ -37,8 +37,12 @@ public class User_Profile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user__profile, container, false);
+        retrofitServices = new RetrofitServices();
+        userApi = retrofitServices.getRetrofit().create(UserApi.class);
+        getSingleUserData();
         pg = new ProgressDialog(getActivity());
         pg.setTitle("Loading..... ");
         pg.setMessage("Please wait we fetch your data... ");
@@ -52,7 +56,6 @@ public class User_Profile extends Fragment {
                 pg.dismiss();
             }
         },1500);
-
         User_Account_Address = view.findViewById(R.id.User_Account_Address);
         User_Account_Email = view.findViewById(R.id.User_Account_Email);
         User_Account_Mobile = view.findViewById(R.id.User_Account_Mobile);
@@ -64,9 +67,8 @@ public class User_Profile extends Fragment {
         User_Account_Payment_button=view.findViewById(R.id.User_Account_Payment_Button);
         SharedPreferences preferences = getActivity().getSharedPreferences("Login", MODE_PRIVATE);
         Login_Mobile = preferences.getString("Login_Mobile","");
-        retrofitServices = new RetrofitServices();
-        userApi = retrofitServices.getRetrofit().create(UserApi.class);
-        getSingleUserData();
+
+
         User_Account_Order_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,7 +96,11 @@ public class User_Profile extends Fragment {
                 builder.setNegativeButton("Logout", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(getContext().getApplicationContext(),User_Login.class));
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.clear();
+                        editor.commit();
+                        editor.apply();
+                        startActivity(new Intent(getContext().getApplicationContext(), User_Login.class));
                     }
                 });
                 builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
@@ -109,7 +115,9 @@ public class User_Profile extends Fragment {
         return view;
     }
     public void getSingleUserData(){
-        userApi.getSingleUser(30).enqueue(new Callback<User>() {
+        SharedPreferences preferences = getActivity().getSharedPreferences("Login",MODE_PRIVATE);
+        long Login_Mobile = Long.parseLong(preferences.getString("Login_Mobile",""));
+        userApi.getSingleUser(Login_Mobile).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 String name = response.body().getName();
@@ -130,5 +138,10 @@ public class User_Profile extends Fragment {
 
             }
         });
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        getSingleUserData();
     }
 }

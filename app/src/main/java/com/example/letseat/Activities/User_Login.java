@@ -58,7 +58,6 @@ public class User_Login extends AppCompatActivity {
         User_Login_Signup=findViewById(R.id.User_Login_Signup);
         retrofitServices = new RetrofitServices();
         userApi = retrofitServices.getRetrofit().create(UserApi.class);
-        getSingleUserData();
        User_Login_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,7 +86,7 @@ public class User_Login extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences("Login",MODE_PRIVATE);
         String Login_Mobile = preferences.getString("Login_Mobile","");
-        if(Login_Mobile.equals(""))
+        if(!Login_Mobile.equals(""))
         {
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
         }
@@ -172,21 +171,5 @@ public class User_Login extends AppCompatActivity {
                 }
             });
         }
-    }
-    public void getSingleUserData(){
-        userApi.getSingleUser(1).enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                String name = response.body().getName();
-                String pass = response.body().getPassword();
-                String mobile = String.valueOf(response.body().getMobileNo());
-
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-
-            }
-        });
     }
 }
