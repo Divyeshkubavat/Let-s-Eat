@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.User_Product_Payment_Design"
+            android:exported="false" />
+        <activity
             android:name=".Activities.User_Offer_Design"
             android:exported="false" />
         <activity

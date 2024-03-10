@@ -108,11 +108,9 @@ public class User_Home extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
-
                 pg.dismiss();
             }
-        },1500);
+        },1200);
         BackToTop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

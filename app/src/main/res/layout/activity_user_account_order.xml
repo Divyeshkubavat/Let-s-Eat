@@ -34,7 +34,6 @@
                         android:layout_marginRight="@dimen/_15sdp"
                         android:textColor="@color/app"/>
                 </LinearLayout>
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -43,6 +42,5 @@
                     android:id="@+id/User_Account_Order_Rcyclerview"
                     tools:listitem="@layout/activity_user_account_order_design"/>
             </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

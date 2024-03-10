@@ -1,65 +1,130 @@
 package com.example.letseat.Activities;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.letseat.Adapter.CartAdapter;
+import com.example.letseat.Model.Cart;
 import com.example.letseat.R;
+import com.example.letseat.Retrofit.RetrofitServices;
+import com.example.letseat.Retrofit.UserApi;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link User_Cart#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
 public class User_Cart extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public User_Cart() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment User_Cart.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static User_Cart newInstance(String param1, String param2) {
-        User_Cart fragment = new User_Cart();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    RecyclerView cart_RecyclerView;
+    public static TextView cartTotal;
+    Button cartCheckOut;
+    RetrofitServices retrofitServices;
+    UserApi userApi;
+    CartAdapter adapter;
+    ArrayList<Cart> list;
+    ProgressDialog pg;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user__cart, container, false);
+        View view=  inflater.inflate(R.layout.fragment_user__cart, container, false);
+        cart_RecyclerView=view.findViewById(R.id.cart_recycler_view);
+        cartTotal=view.findViewById(R.id.final_total);
+        cartCheckOut=view.findViewById(R.id.cart_check_out);
+        retrofitServices = new RetrofitServices();
+        userApi = retrofitServices.getRetrofit().create(UserApi.class);
+        list = new ArrayList<>();
+        pg = new ProgressDialog(getActivity());
+        pg.setTitle("Loading..... ");
+        pg.setMessage("Please wait we fetch your data... ");
+        pg.setCanceledOnTouchOutside(false);
+        pg.show();
+        setData();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+
+                pg.dismiss();
+            }
+        },1500);
+
+        cartCheckOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), User_Product_Payment.class);
+                startActivity(i);
+            }
+        });
+
+        return view;
+    }
+    private  void setData(){
+        SharedPreferences preferences = getActivity().getSharedPreferences("Login", MODE_PRIVATE);
+        String mobile = preferences.getString("Login_Mobile","");
+        userApi.getCartByMobileNumber(Long.parseLong(mobile)).enqueue(new Callback<List<Cart>>() {
+            @Override
+            public void onResponse(Call<List<Cart>> call, Response<List<Cart>> response) {
+                list= (ArrayList<Cart>) response.body();
+                adapter=new CartAdapter(list,getContext());
+                cart_RecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+                adapter.notifyDataSetChanged();
+                cart_RecyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Cart>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        pg.show();
+        setData();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+
+                pg.dismiss();
+            }
+        },1000);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        pg.show();
+        setData();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+
+                pg.dismiss();
+            }
+        },1500);
     }
 }

@@ -54,16 +54,35 @@
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:textColor="@color/app"
                         android:id="@+id/Admin_Product_Design_Name"/>
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="100 RS"
-                        android:textSize="@dimen/_11sdp"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:textStyle="bold"
-                        android:textColor="@color/app"
-                        android:id="@+id/Admin_Product_Design_Price"/>
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:orientation="horizontal"
+                        android:layout_below="@id/User_Home_Product_View_Design_Name"
+                        android:layout_centerHorizontal="true">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:text="₹"
+                            android:textColor="#D32F2F"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="100rs"
+                            android:id="@+id/Admin_Product_Design_Price"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="@dimen/_6sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="@dimen/_12sdp"
+                            android:textColor="#D32F2F"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
                     <TextView
                         android:id="@+id/Admin_Product_Design_Restaurant_Name"
                         android:layout_width="wrap_content"

@@ -37,16 +37,33 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="@dimen/_4sdp"
             android:textColor="@color/app"/>
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Price : 100rs"
-            android:id="@+id/User_Home_Product_View_Design_Price"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="@dimen/_6sdp"
+            android:orientation="horizontal"
             android:layout_below="@id/User_Home_Product_View_Design_Name"
-            android:textSize="@dimen/_12sdp"
-            android:textColor="#E53935" />
+            android:layout_centerHorizontal="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/_6sdp"
+                android:text="₹"
+                android:textColor="#D32F2F"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100rs"
+                android:id="@+id/User_Home_Product_View_Design_Price"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/_6sdp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="#D32F2F"/>
+        </LinearLayout>
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

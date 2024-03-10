@@ -69,6 +69,17 @@
                     android:textSize="@dimen/_14sdp"
                     android:id="@+id/User_Account_Order_Detail_Timer"/>
             </RelativeLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/image_border">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/User_Account_Order_Detail_Recyclerview"
+                    android:layout_margin="@dimen/_5sdp"
+                    tools:listitem="@layout/activity_user_product_payment_design"/>
+            </ScrollView>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -268,6 +279,7 @@
                             android:text="Total Bill :- "
                             android:textStyle="bold"/>
                         <TextView
+                            android:id="@+id/User_Account_Order_Detail_Toatl"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/_15sdp"

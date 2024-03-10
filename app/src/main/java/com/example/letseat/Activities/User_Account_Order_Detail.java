@@ -3,6 +3,9 @@ package com.example.letseat.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -11,7 +14,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.letseat.Adapter.paymentProductAdapter;
+import com.example.letseat.Model.Payment;
 import com.example.letseat.R;
+import com.example.letseat.Retrofit.RetrofitServices;
+import com.example.letseat.Retrofit.UserApi;
 
 import java.lang.reflect.Type;
 import java.text.DecimalFormat;
@@ -22,6 +30,9 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class User_Account_Order_Detail extends AppCompatActivity {
@@ -34,10 +45,13 @@ public class User_Account_Order_Detail extends AppCompatActivity {
     Button User_Account_Order_Cancel_Button;
 
     TextView Timer;
+    RetrofitServices retrofitServices;
+    UserApi userApi;
     long mili;
     long count = 1000;
     int min = 28;
     int m ;
+    TextView User_Account_Order_Detail_Order_ID,User_Account_Order_Detail_Toatl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,10 +70,14 @@ public class User_Account_Order_Detail extends AppCompatActivity {
         Order_Accept_View=findViewById(R.id.Order_Track_Accept_Order_Line);
         Order_Process_View=findViewById(R.id.Order_Track_Process_Order_Line);
         Out_For_Delivery_View=findViewById(R.id.Order_Track_Out_For_Deliver_Line);
+        User_Account_Order_Detail_Order_ID=findViewById(R.id.User_Account_Order_Detail_Order_ID);
+        User_Account_Order_Detail_Toatl=findViewById(R.id.User_Account_Order_Detail_Toatl);
+        retrofitServices = new RetrofitServices();
+        userApi = retrofitServices.getRetrofit().create(UserApi.class);
         Timer = findViewById(R.id.User_Account_Order_Detail_Timer);
         User_Account_Order_Cancel_Button=findViewById(R.id.User_Account_Order_Cancel_Button);
         Time();
-        Track();
+        setData();
     }
     public void Track() {
         if(Order_Status == 1)
@@ -212,6 +230,29 @@ public class User_Account_Order_Detail extends AppCompatActivity {
                 }
             }.start();
         }
+
+    }
+
+    private void setData(){
+        Intent i = getIntent();
+        int orderId= i.getIntExtra("oid",0);
+        Order_Status = Integer.parseInt(String.valueOf(i.getIntExtra("status",0)));
+        SharedPreferences preferences = getSharedPreferences("Login", MODE_PRIVATE);
+        String mobile = preferences.getString("Login_Mobile","");
+        Payment p = new Payment();
+        p.setOrderId(orderId);
+        Track();
+        userApi.updatePaymentByMobileNo(Long.parseLong(mobile),p).enqueue(new Callback<Payment>() {
+            @Override
+            public void onResponse(Call<Payment> call, Response<Payment> response) {
+            }
+
+            @Override
+            public void onFailure(Call<Payment> call, Throwable t) {
+            }
+        });
+
+        User_Account_Order_Detail_Order_ID.setText(String.valueOf(orderId));
 
     }
 }

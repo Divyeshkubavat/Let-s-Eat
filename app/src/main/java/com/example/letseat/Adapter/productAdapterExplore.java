@@ -47,7 +47,9 @@ public class productAdapterExplore extends RecyclerView.Adapter<productAdapterEx
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                view.getContext().startActivity(new Intent(view.getContext(), User_Add_Product_Cart.class));
+                Intent i = new Intent(view.getContext(),User_Add_Product_Cart.class);
+                i.putExtra("id",p.getId());
+                view.getContext().startActivity(i);
             }
         });
     }

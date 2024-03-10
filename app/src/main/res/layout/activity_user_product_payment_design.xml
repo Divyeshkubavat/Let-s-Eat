@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".Activities.User_Cart_Product_Design">
+    tools:context=".Activities.User_Product_Payment_Design">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -107,34 +108,7 @@
                         android:textStyle="bold"/>
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/_15sdp">
-                <ImageView
-                    android:id="@+id/User_Cart_Product_Edit_Button"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:clickable="true"
-                    android:background="@drawable/image_border"
-                    android:padding="@dimen/_3sdp"
-                    android:src="@drawable/baseline_edit_24" />
-
-                <View
-                    android:layout_width="@dimen/_1sdp"
-                    android:layout_height="@dimen/_10sdp"/>
-                <ImageView
-                    android:id="@+id/User_Cart_Product_Delete_Button"
-                    android:clickable="true"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:background="@drawable/image_border"
-                    android:padding="@dimen/_3sdp"
-                    android:src="@drawable/baseline_delete_24" />
-            </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+
 </RelativeLayout>

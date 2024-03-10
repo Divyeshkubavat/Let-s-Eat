@@ -10,24 +10,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/swipe_refresh">
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/s2">
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="😋 My Cart 😋"
+                    android:text="My Cart >"
+                    android:layout_gravity="start"
+                    android:layout_marginLeft="@dimen/_5sdp"
                     android:textColor="@color/app"
+                    android:layout_marginRight="@dimen/_5sdp"
                     android:textStyle="bold"
-                    android:textSize="@dimen/_32sdp"
+                    android:textSize="@dimen/_25sdp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/_16sdp"
                     android:id="@+id/cart_heading"/>
                 <ScrollView
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/s1">
@@ -39,11 +44,11 @@
                         android:id="@+id/cart_recycler_view"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginTop="95dp"
+                       android:layout_marginTop="@dimen/_1sdp"
                         tools:listitem="@layout/activity_user_cart_product_design"/>
                 </ScrollView>
-            </RelativeLayout>
-        </ScrollView>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,7 +56,7 @@
         android:id="@+id/l1"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/_80sdp">
+        android:layout_marginBottom="@dimen/_60sdp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,7 +65,7 @@
             android:id="@+id/final_total"
             android:layout_marginTop="24dp"
             android:layout_marginLeft="10dp"
-            android:textColor="@color/app"
+            android:textColor="#D32F2F"
             android:layout_weight="1"
             android:textStyle="bold"/>
         <com.google.android.material.button.MaterialButton
@@ -69,9 +74,9 @@
             android:layout_height="wrap_content"
             android:text="Checkout"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="#ffffff"
             app:cornerRadius="@dimen/_20sdp"
-            android:backgroundTint="@color/button"
+            android:backgroundTint="@color/app"
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Activities.User_Home_Screen_Search">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -45,5 +45,5 @@
                 android:layout_margin="@dimen/_5sdp"
                 tools:listitem="@layout/activity_user_product_view_design" />
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

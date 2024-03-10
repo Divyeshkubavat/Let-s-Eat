@@ -1,6 +1,8 @@
 package com.example.letseat.Activities;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -27,6 +29,7 @@ public class User_Burger_Explore extends AppCompatActivity {
     SearchView User_Burger_Explore_Searchview;
     RetrofitServices retrofitServices;
     UserApi userApi;
+    ProgressDialog pg;
     productAdapterExplore burgerAdapter;
     ArrayList<Product> burgerList;
     @Override
@@ -38,7 +41,32 @@ public class User_Burger_Explore extends AppCompatActivity {
         retrofitServices = new RetrofitServices();
         userApi = retrofitServices.getRetrofit().create(UserApi.class);
         burgerList=new ArrayList<>();
+        pg = new ProgressDialog(User_Burger_Explore.this);
+        pg.setTitle("Loading..... ");
+        pg.setMessage("Please wait we fetch your data... ");
+        pg.setCanceledOnTouchOutside(false);
+        pg.show();
         setProduct();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                pg.dismiss();
+            }
+        },600);
+        User_Burger_Explore_Searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                search(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                search(newText);
+                return false;
+            }
+        });
+
     }
     @Override
     public void onBackPressed() {
@@ -51,6 +79,23 @@ public class User_Burger_Explore extends AppCompatActivity {
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 burgerList = (ArrayList<Product>) response.body();
                 burgerAdapter = new productAdapterExplore(burgerList,User_Burger_Explore.this);
+                User_Burger_Explore_Recyclerview.setLayoutManager(new LinearLayoutManager(User_Burger_Explore.this,LinearLayoutManager.VERTICAL,false));
+                burgerAdapter.notifyDataSetChanged();
+                User_Burger_Explore_Recyclerview.setAdapter(burgerAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+
+            }
+        });
+    }
+    private void search(String key){
+        userApi.searchProduct(key).enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                burgerList= (ArrayList<Product>) response.body();
+                burgerAdapter=new productAdapterExplore(burgerList,User_Burger_Explore.this);
                 User_Burger_Explore_Recyclerview.setLayoutManager(new LinearLayoutManager(User_Burger_Explore.this,LinearLayoutManager.VERTICAL,false));
                 burgerAdapter.notifyDataSetChanged();
                 User_Burger_Explore_Recyclerview.setAdapter(burgerAdapter);

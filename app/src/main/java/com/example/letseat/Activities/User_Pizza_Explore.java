@@ -1,6 +1,8 @@
 package com.example.letseat.Activities;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -25,6 +27,7 @@ public class User_Pizza_Explore extends AppCompatActivity {
     SearchView User_Pizza_Explore_Searchview;
     RetrofitServices retrofitServices;
     UserApi userApi;
+    ProgressDialog pg;
     productAdapterExplore pizzaAdapter;
     ArrayList<Product> pizzaList;
 
@@ -37,7 +40,18 @@ public class User_Pizza_Explore extends AppCompatActivity {
         retrofitServices = new RetrofitServices();
         userApi = retrofitServices.getRetrofit().create(UserApi.class);
         pizzaList=new ArrayList<>();
+        pg = new ProgressDialog(User_Pizza_Explore.this);
+        pg.setTitle("Loading..... ");
+        pg.setMessage("Please wait we fetch your data... ");
+        pg.setCanceledOnTouchOutside(false);
+        pg.show();
         setProduct();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                pg.dismiss();
+            }
+        },600);
     }
 
     private void setProduct() {
