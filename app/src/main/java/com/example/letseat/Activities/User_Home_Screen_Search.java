@@ -3,12 +3,14 @@ package com.example.letseat.Activities;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.letseat.Adapter.CartAdapter;
 import com.example.letseat.Adapter.productAdapterExplore;
 import com.example.letseat.Model.Cart;
@@ -33,6 +35,7 @@ public class User_Home_Screen_Search extends AppCompatActivity {
     productAdapterExplore adapter;
     ArrayList<Product> list;
     ProgressDialog pg;
+    LottieAnimationView search_lottie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class User_Home_Screen_Search extends AppCompatActivity {
         setContentView(R.layout.activity_user_home_screen_search);
         User_Home_Screen_Search_Recyclerview=findViewById(R.id.User_home_Screen_Search_Recyclerview);
         User_Home_Screen_Search_Searchview=findViewById(R.id.User_Home_Screen_Search_Searchview);
+        search_lottie=findViewById(R.id.search_lottie);
         retrofitServices = new RetrofitServices();
         userApi = retrofitServices.getRetrofit().create(UserApi.class);
         list = new ArrayList<>();
@@ -84,8 +88,14 @@ public class User_Home_Screen_Search extends AppCompatActivity {
                 list= (ArrayList<Product>) response.body();
                 adapter=new productAdapterExplore(list,User_Home_Screen_Search.this);
                 User_Home_Screen_Search_Recyclerview.setLayoutManager(new LinearLayoutManager(User_Home_Screen_Search.this,LinearLayoutManager.VERTICAL,false));
-                adapter.notifyDataSetChanged();
-                User_Home_Screen_Search_Recyclerview.setAdapter(adapter);
+                if (adapter.getItemCount()==0)
+                {
+                    search_lottie.setVisibility(View.VISIBLE);
+                }else {
+                    search_lottie.setVisibility(View.GONE);
+                    adapter.notifyDataSetChanged();
+                    User_Home_Screen_Search_Recyclerview.setAdapter(adapter);
+                }
             }
 
             @Override
@@ -101,8 +111,11 @@ public class User_Home_Screen_Search extends AppCompatActivity {
                 list= (ArrayList<Product>) response.body();
                 adapter=new productAdapterExplore(list,User_Home_Screen_Search.this);
                 User_Home_Screen_Search_Recyclerview.setLayoutManager(new LinearLayoutManager(User_Home_Screen_Search.this,LinearLayoutManager.VERTICAL,false));
-                adapter.notifyDataSetChanged();
-                User_Home_Screen_Search_Recyclerview.setAdapter(adapter);
+
+                    search_lottie.setVisibility(View.GONE);
+                    adapter.notifyDataSetChanged();
+                    User_Home_Screen_Search_Recyclerview.setAdapter(adapter);
+
             }
 
             @Override

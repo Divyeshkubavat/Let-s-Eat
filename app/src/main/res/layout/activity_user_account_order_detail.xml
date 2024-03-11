@@ -347,6 +347,7 @@
                         </TableLayout>
                     </LinearLayout>
                     <RatingBar
+                        android:id="@+id/User_Account_Order_Detail_RatingBar"
                         android:layout_width="wrap_content"
                         android:stepSize="0.5"
                         android:layout_height="match_parent"
@@ -358,6 +359,7 @@
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_gravity="center_horizontal" />
                     <Button
+                        android:id="@+id/User_Account_Order_Detail_RatingBar_Submit_Button"
                         android:layout_width="@dimen/_120sdp"
                         android:layout_height="@dimen/_40sdp"
                         android:text="Submit"

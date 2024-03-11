@@ -3,12 +3,14 @@ package com.example.letseat.Activities;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.letseat.Adapter.productAdapterExplore;
 import com.example.letseat.Model.Product;
 import com.example.letseat.R;
@@ -31,6 +33,7 @@ public class User_Drink_Explore extends AppCompatActivity {
     ProgressDialog pg;
     productAdapterExplore drinkAdapter;
     ArrayList<Product> drinkList;
+    LottieAnimationView drink_lottie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class User_Drink_Explore extends AppCompatActivity {
         setContentView(R.layout.activity_user_drink_explore);
         User_Drink_Explore_Searchview = findViewById(R.id.User_Drink_Explore_Searchview);
         User_Drink_Explore_Recyclerview=findViewById(R.id.User_Drink_Explore_Recyclerview);
+        drink_lottie=findViewById(R.id.drink_lottie);
         retrofitServices = new RetrofitServices();
         userApi = retrofitServices.getRetrofit().create(UserApi.class);
         drinkList=new ArrayList<>();
@@ -54,6 +58,19 @@ public class User_Drink_Explore extends AppCompatActivity {
                 pg.dismiss();
             }
         },600);
+        User_Drink_Explore_Searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                search(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                search(newText);
+                return false;
+            }
+        });
 
     }
 
@@ -64,8 +81,34 @@ public class User_Drink_Explore extends AppCompatActivity {
                 drinkList = (ArrayList<Product>) response.body();
                 drinkAdapter = new productAdapterExplore(drinkList,User_Drink_Explore.this);
                 User_Drink_Explore_Recyclerview.setLayoutManager(new LinearLayoutManager(User_Drink_Explore.this,LinearLayoutManager.VERTICAL,false));
-                drinkAdapter.notifyDataSetChanged();
-                User_Drink_Explore_Recyclerview.setAdapter(drinkAdapter);
+                if(drinkAdapter.getItemCount()==0){
+                    drink_lottie.setVisibility(View.VISIBLE);
+                }else{
+                    drink_lottie.setVisibility(View.GONE);
+                    drinkAdapter.notifyDataSetChanged();
+                    User_Drink_Explore_Recyclerview.setAdapter(drinkAdapter);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+
+            }
+        });
+    }
+    private void search(String key){
+        userApi.searchProduct(key,204).enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                drinkList= (ArrayList<Product>) response.body();
+                drinkAdapter=new productAdapterExplore(drinkList,User_Drink_Explore.this);
+                User_Drink_Explore_Recyclerview.setLayoutManager(new LinearLayoutManager(User_Drink_Explore.this,LinearLayoutManager.VERTICAL,false));
+
+                    drink_lottie.setVisibility(View.GONE);
+                    drinkAdapter.notifyDataSetChanged();
+                    User_Drink_Explore_Recyclerview.setAdapter(drinkAdapter);
+
             }
 
             @Override

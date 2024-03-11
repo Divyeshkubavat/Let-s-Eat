@@ -8,7 +8,9 @@ import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.letseat.Adapter.OrderAdapter;
 import com.example.letseat.Model.Order;
 import com.example.letseat.R;
@@ -30,12 +32,14 @@ public class User_Account_Order extends AppCompatActivity {
     ProgressDialog pg;
     ArrayList<Order> list;
     OrderAdapter adapter;
+    LottieAnimationView order_lottie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_account_order);
         User_Account_Order_Rcyclerview=findViewById(R.id.User_Account_Order_Rcyclerview);
+        order_lottie=findViewById(R.id.order_lottie);
         retrofitServices = new RetrofitServices();
         userApi = retrofitServices.getRetrofit().create(UserApi.class);
         list=new ArrayList<>();
@@ -61,13 +65,32 @@ public class User_Account_Order extends AppCompatActivity {
                 list= (ArrayList<Order>) response.body();
                 adapter=new OrderAdapter(list,getApplicationContext());
                 User_Account_Order_Rcyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
-                adapter.notifyDataSetChanged();
-                User_Account_Order_Rcyclerview.setAdapter(adapter);
+                if(adapter.getItemCount()==0)
+                {
+                    order_lottie.setVisibility(View.VISIBLE);
+                }else {
+                    order_lottie.setVisibility(View.GONE);
+                    adapter.notifyDataSetChanged();
+                    User_Account_Order_Rcyclerview.setAdapter(adapter);
+                }
+
             }
             @Override
             public void onFailure(Call<List<Order>> call, Throwable t) {
 
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setData();
     }
 }

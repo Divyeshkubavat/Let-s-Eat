@@ -129,6 +129,23 @@ public interface UserApi {
             @Query("orderId") int id
     );
 
-    @POST("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/orders/update-by-mobile-no")
-    Call<Order> updateOrderByMobileNo();
+    @DELETE("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/orders/delete")
+    Call<String> deleteByOrderId(
+            @Query("orderId") int id
+    );
+
+    @DELETE("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/payment/delete-by-order-id")
+    Call<String> deletePaymentByOrderId(
+            @Query("orderId") int id
+    );
+
+    @PUT("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/orders/update")
+    Call<Order> updateOrder(
+            @Query("orderId") int id,@Body Order order
+            );
+
+    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/product/category-wise-search")
+    Call<List<Product>> searchProduct(
+            @Query("keyword") String key,@Query("categoryId") int id
+    );
 }

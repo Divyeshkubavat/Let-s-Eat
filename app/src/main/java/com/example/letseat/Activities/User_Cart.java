@@ -12,11 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.letseat.Adapter.CartAdapter;
 import com.example.letseat.Model.Cart;
 import com.example.letseat.R;
@@ -41,6 +43,8 @@ public class User_Cart extends Fragment {
     CartAdapter adapter;
     ArrayList<Cart> list;
     ProgressDialog pg;
+    public  static double total;
+    public static LottieAnimationView cart_lottie;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,6 +54,7 @@ public class User_Cart extends Fragment {
         cart_RecyclerView=view.findViewById(R.id.cart_recycler_view);
         cartTotal=view.findViewById(R.id.final_total);
         cartCheckOut=view.findViewById(R.id.cart_check_out);
+        cart_lottie=view.findViewById(R.id.cart_lottie);
         retrofitServices = new RetrofitServices();
         userApi = retrofitServices.getRetrofit().create(UserApi.class);
         list = new ArrayList<>();
@@ -71,8 +76,15 @@ public class User_Cart extends Fragment {
         cartCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getContext(), User_Product_Payment.class);
-                startActivity(i);
+                if(adapter.getItemCount()==0)
+                {
+                    Toast.makeText(getContext(), "Cart Is Empty", Toast.LENGTH_SHORT).show();
+                }else
+                {
+                    Intent i = new Intent(getContext(), User_Product_Payment.class);
+                    startActivity(i);
+                }
+
             }
         });
 
@@ -87,8 +99,17 @@ public class User_Cart extends Fragment {
                 list= (ArrayList<Cart>) response.body();
                 adapter=new CartAdapter(list,getContext());
                 cart_RecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-                adapter.notifyDataSetChanged();
-                cart_RecyclerView.setAdapter(adapter);
+                if(adapter.getItemCount()==0)
+                {
+                    cart_lottie.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    adapter.notifyDataSetChanged();
+                    cart_lottie.setVisibility(View.GONE);
+                    cart_RecyclerView.setAdapter(adapter);
+                }
+
             }
 
             @Override

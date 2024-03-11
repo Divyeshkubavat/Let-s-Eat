@@ -50,16 +50,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        pg.setTitle("Loading ......");
-        pg.setMessage("Please Wait ....");
-        pg.setCanceledOnTouchOutside(true);
-        pg.show();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                pg.dismiss();
-            }
-        },1500);
     }
     @Override
     public void onBackPressed() {

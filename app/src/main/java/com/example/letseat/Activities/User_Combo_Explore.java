@@ -3,12 +3,14 @@ package com.example.letseat.Activities;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.letseat.Adapter.productAdapterExplore;
 import com.example.letseat.Model.Product;
 import com.example.letseat.R;
@@ -31,6 +33,7 @@ public class User_Combo_Explore extends AppCompatActivity {
     ProgressDialog pg;
     productAdapterExplore comboAdapter;
     ArrayList<Product> comboList;
+    LottieAnimationView combo_lottie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class User_Combo_Explore extends AppCompatActivity {
         setContentView(R.layout.activity_user_combo_explore);
         User_Combo_Explore_Searchview = findViewById(R.id.User_Combo_Explore_Searchview);
         User_Combo_Explore_Recyclerview=findViewById(R.id.User_Combo_Explore_Recyclerview);
+        combo_lottie=findViewById(R.id.combo_lottie);
         retrofitServices = new RetrofitServices();
         userApi = retrofitServices.getRetrofit().create(UserApi.class);
         comboList=new ArrayList<>();
@@ -54,6 +58,19 @@ public class User_Combo_Explore extends AppCompatActivity {
                 pg.dismiss();
             }
         },600);
+        User_Combo_Explore_Searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                search(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                search(newText);
+                return false;
+            }
+        });
     }
 
     private void setProduct() {
@@ -63,8 +80,34 @@ public class User_Combo_Explore extends AppCompatActivity {
                 comboList = (ArrayList<Product>) response.body();
                 comboAdapter = new productAdapterExplore(comboList,User_Combo_Explore.this);
                 User_Combo_Explore_Recyclerview.setLayoutManager(new LinearLayoutManager(User_Combo_Explore.this,LinearLayoutManager.VERTICAL,false));
-                comboAdapter.notifyDataSetChanged();
-                User_Combo_Explore_Recyclerview.setAdapter(comboAdapter);
+                if(comboAdapter.getItemCount()==0){
+                    combo_lottie.setVisibility(View.VISIBLE);
+                }
+                else {
+                    combo_lottie.setVisibility(View.GONE);
+                    comboAdapter.notifyDataSetChanged();
+                    User_Combo_Explore_Recyclerview.setAdapter(comboAdapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+
+            }
+        });
+    }
+    private void search(String key){
+        userApi.searchProduct(key,203).enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                comboList= (ArrayList<Product>) response.body();
+                comboAdapter=new productAdapterExplore(comboList,User_Combo_Explore.this);
+                User_Combo_Explore_Recyclerview.setLayoutManager(new LinearLayoutManager(User_Combo_Explore.this,LinearLayoutManager.VERTICAL,false));
+
+                    combo_lottie.setVisibility(View.GONE);
+                    comboAdapter.notifyDataSetChanged();
+                    User_Combo_Explore_Recyclerview.setAdapter(comboAdapter);
+
             }
 
             @Override

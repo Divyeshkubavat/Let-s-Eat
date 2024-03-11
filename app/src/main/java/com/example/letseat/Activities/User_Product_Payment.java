@@ -219,6 +219,7 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
                 }
+
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
                 }
@@ -248,7 +249,6 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
                 Toast.makeText(User_Product_Payment.this, "Failed"+t, Toast.LENGTH_SHORT).show();
             }
         });
-
     }
     private void setOrder(){
         SharedPreferences preferences = getSharedPreferences("Login", MODE_PRIVATE);
@@ -263,6 +263,7 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
             @Override
             public void onResponse(Call<Order> call, Response<Order> response) {
                 id=response.body().getId();
+                id=id+0;
                 payment();
             }
             @Override

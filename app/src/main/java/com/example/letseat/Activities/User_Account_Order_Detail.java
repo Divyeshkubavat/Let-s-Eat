@@ -16,6 +16,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,8 +62,8 @@ public class User_Account_Order_Detail extends AppCompatActivity {
     RecyclerView User_Account_Order_Detail_Recyclerview;
 
     int Order_Status = 3;
-    Button User_Account_Order_Cancel_Button;
-
+    Button User_Account_Order_Cancel_Button,User_Account_Order_Detail_RatingBar_Submit_Button;
+    RatingBar User_Account_Order_Detail_RatingBar;
     TextView Timer;
     RetrofitServices retrofitServices;
     UserApi userApi;
@@ -74,6 +75,7 @@ public class User_Account_Order_Detail extends AppCompatActivity {
     SharedPreferences preferences;
     ProgressDialog pg;
     TextView User_Account_Order_Detail_Order_ID,User_Account_Order_Detail_Toatl;
+    int orderId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +98,8 @@ public class User_Account_Order_Detail extends AppCompatActivity {
         Out_For_Delivery_View=findViewById(R.id.Order_Track_Out_For_Deliver_Line);
         User_Account_Order_Detail_Order_ID=findViewById(R.id.User_Account_Order_Detail_Order_ID);
         User_Account_Order_Detail_Toatl=findViewById(R.id.User_Account_Order_Detail_Toatl);
+        User_Account_Order_Detail_RatingBar_Submit_Button=findViewById(R.id.User_Account_Order_Detail_RatingBar_Submit_Button);
+        User_Account_Order_Detail_RatingBar=findViewById(R.id.User_Account_Order_Detail_RatingBar);
         retrofitServices = new RetrofitServices();
         userApi = retrofitServices.getRetrofit().create(UserApi.class);
         Timer = findViewById(R.id.User_Account_Order_Detail_Timer);
@@ -105,7 +109,7 @@ public class User_Account_Order_Detail extends AppCompatActivity {
         Time();
         pg = new ProgressDialog(User_Account_Order_Detail.this);
         pg.setTitle("Loading..... ");
-        pg.setMessage("Please wait we fetch your data... ");
+        pg.setMessage("Please wait Deleting Order ....");
         pg.setCanceledOnTouchOutside(false);
         pg.show();
         getData();
@@ -115,8 +119,48 @@ public class User_Account_Order_Detail extends AppCompatActivity {
                 pg.dismiss();
             }
         },500);
+        User_Account_Order_Cancel_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                paymentDelete();
+                pg = new ProgressDialog(User_Account_Order_Detail.this);
+                pg.setTitle("Loading..... ");
+                pg.setMessage("Please wait we fetch your data... ");
+                pg.setCanceledOnTouchOutside(false);
+                pg.show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        orderDelete();
+                        pg.cancel();
+                        finish();
+                    }
+                },2000);
+            }
+        });
+        User_Account_Order_Detail_RatingBar_Submit_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int rate = (int) User_Account_Order_Detail_RatingBar.getRating();
+                Order o = new Order();
+                o.setRating(rate);
+                userApi.updateOrder(orderId,o).enqueue(new Callback<Order>() {
+                    @Override
+                    public void onResponse(Call<Order> call, Response<Order> response) {
+                        Toast.makeText(User_Account_Order_Detail.this, "Thank You For Rating", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Order> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
 
     }
+
     public void Track() {
         if(Order_Status == 1)
         {
@@ -267,7 +311,7 @@ public class User_Account_Order_Detail extends AppCompatActivity {
 
     private void setData(){
         Intent i = getIntent();
-        int orderId= i.getIntExtra("oid",0);
+        orderId= i.getIntExtra("oid",0);
         Order_Status = Integer.parseInt(String.valueOf(i.getIntExtra("status",0)));
         SharedPreferences preferences = getSharedPreferences("Login", MODE_PRIVATE);
         String mobile = preferences.getString("Login_Mobile","");
@@ -324,7 +368,31 @@ public class User_Account_Order_Detail extends AppCompatActivity {
         return timeDifferenceInMillis;
     }
 
-    private void OrderDelete(){
+    private void paymentDelete(){
+        userApi.deletePaymentByOrderId(orderId).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
 
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
+    }
+    private void orderDelete() {
+        userApi.deleteByOrderId(orderId).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Toast.makeText(User_Account_Order_Detail.this, "Order Deleted Successfully", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
     }
 }

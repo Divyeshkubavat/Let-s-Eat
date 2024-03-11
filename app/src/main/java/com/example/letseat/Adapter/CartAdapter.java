@@ -3,10 +3,13 @@ package com.example.letseat.Adapter;
 import static android.content.Context.MODE_PRIVATE;
 
 import static com.example.letseat.Activities.User_Cart.cartTotal;
+import static com.example.letseat.Activities.User_Cart.cart_lottie;
+import static com.example.letseat.Activities.User_Cart.total;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,8 +85,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         userApi.getCartTotalByMobileNo(Long.parseLong(mobile)).enqueue(new Callback<Double>() {
             @Override
             public void onResponse(Call<Double> call, Response<Double> response) {
-                double total = response.body();
-                cartTotal.setText("Total : "+ String.valueOf(total));
+                double t = response.body();
+                total=t;
+                cartTotal.setText("Total : "+ String.valueOf(t));
             }
 
             @Override
@@ -108,6 +112,25 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 list.remove(position);
                 notifyItemRemoved(position);
                 notifyDataSetChanged();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        userApi.getCartTotalByMobileNo(Long.parseLong(mobile)).enqueue(new Callback<Double>() {
+                            @Override
+                            public void onResponse(Call<Double> call, Response<Double> response) {
+                                double t = response.body();
+                                total=t;
+                                cartTotal.setText("Total : "+ String.valueOf(t));
+                            }
+
+                            @Override
+                            public void onFailure(Call<Double> call, Throwable t) {
+
+                            }
+                        });
+                        cart_lottie.setVisibility(View.VISIBLE);
+                    }
+                },1000);
             }
         });
         holder.editBtn.setOnClickListener(new View.OnClickListener() {

@@ -35,14 +35,26 @@
                 android:orientation="vertical"
 
                 android:layout_marginLeft="@dimen/_10sdp">
-
-                <TextView
-                    android:id="@+id/User_Account_Payment_History_Design_OrderId"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Order Id"
-                    android:textColor="@color/app"
-                    android:textSize="@dimen/_12sdp" />
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Order Id : "
+                        android:textColor="@color/app"
+                        android:textSize="@dimen/_12sdp"/>
+
+                    <TextView
+                        android:id="@+id/User_Account_Payment_History_Design_OrderId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Order Id"
+                        android:textColor="#D32F2F"
+                        android:textSize="@dimen/_12sdp" />
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="wrap_content"
