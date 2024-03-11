@@ -19,8 +19,11 @@ import com.example.letseat.Model.Payment;
 import com.example.letseat.R;
 import com.example.letseat.Retrofit.RetrofitServices;
 import com.example.letseat.Retrofit.UserApi;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder> {
     ArrayList<Order> list;
@@ -46,7 +49,18 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
         holder.date.setText(o.getDate());
         holder.mobile.setText(String.valueOf(o.getMobileNo()));
         holder.orderId.setText(String.valueOf(o.getId()));
-        holder.status.setText(String.valueOf(o.getState()));
+        int state = o.getState();
+        if(state==1){
+            holder.status.setText("Order Placed");
+        } else if (state==2) {
+            holder.status.setText("Order Accepted");
+        } else if (state==3) {
+            holder.status.setText("Order Proccessing");
+        } else if (state==4) {
+            holder.status.setText("Out For Delivery");
+        }else {
+            holder.status.setText("Delivered");
+        }
         holder.nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,7 +73,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
         });
     }
 
-
     @Override
     public int getItemCount() {
         return list.size();
@@ -68,7 +81,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     class MyViewHolder extends RecyclerView.ViewHolder
     {
         TextView orderId,mobile,date,status;
-        ImageView nextBtn;
+        Button nextBtn;
+        CircleImageView image;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             date=itemView.findViewById(R.id.User_Account_Order_Design_Date);
@@ -76,6 +90,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
             nextBtn=itemView.findViewById(R.id.User_Account_Order_Design_NextBtn);
             status=itemView.findViewById(R.id.User_Account_Order_Design_Status);
             orderId=itemView.findViewById(R.id.User_Account_Order_Design_OrderId);
+            image=itemView.findViewById(R.id.User_Account_Order_Design_Image);
         }
     }
 

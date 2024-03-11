@@ -6,7 +6,10 @@
     android:layout_height="wrap_content"
     tools:context=".Activities.User_Account_Payment_History_Design"
     app:cardCornerRadius="@dimen/_7sdp"
-    android:layout_margin="@dimen/_3sdp"
+    android:layout_marginLeft="@dimen/_2sdp"
+    android:layout_marginRight="@dimen/_2sdp"
+    android:layout_marginTop="@dimen/_1sdp"
+    android:layout_marginBottom="@dimen/_1sdp"
     app:cardElevation="@dimen/_8sdp">
 
     <RelativeLayout
@@ -17,71 +20,88 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/User_Account_Payment_History_Design_OrderId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Order Id"
-                android:textColor="@color/app"
-                android:textSize="@dimen/_12sdp"/>
+            android:weightSum="3"
+            android:orientation="horizontal">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:src="@drawable/razorpay"
+                android:id="@+id/User_Account_Payment_History_Design_Image"/>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+
+                android:layout_marginLeft="@dimen/_10sdp">
+
                 <TextView
+                    android:id="@+id/User_Account_Payment_History_Design_OrderId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Method :  "
+                    android:text="Order Id"
                     android:textColor="@color/app"
-                    android:textSize="@dimen/_12sdp"/>
-                <TextView
-                    android:id="@+id/User_Account_Payment_History_Design_Method"
+                    android:textSize="@dimen/_12sdp" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cash On Delivery"
-                    android:textColor="@color/app"
-                    android:textSize="@dimen/_12sdp"/>
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Method :  "
+                        android:textColor="@color/app"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/User_Account_Payment_History_Design_Method"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cash On Delivery"
+                        android:textColor="#D32F2F"
+                        android:textSize="@dimen/_10sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/User_Account_Payment_History_Design_Date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="24/2/2024"
+                        android:textColor="@color/app"
+                        android:textSize="@dimen/_9sdp" />
+                </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Date :  "
-                    android:textColor="@color/app"
-                    android:textSize="@dimen/_12sdp"/>
-                <TextView
-                    android:id="@+id/User_Account_Payment_History_Design_Date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="24/2/2024"
-                    android:textColor="@color/app"
-                    android:textSize="@dimen/_12sdp"/>
-            </LinearLayout>
+
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerInParent="true"
-            android:layout_alignParentEnd="true">
+            android:layout_alignParentEnd="true"
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/User_Account_Payment_History_Design_Amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1000"
-                android:textSize="@dimen/_12sdp"
-                android:textColor="#C62828"/>
+
+                android:textColor="#C62828"
+                android:textSize="@dimen/_12sdp" />
             <TextView
                 android:id="@+id/User_Account_Payment_History_Design_Status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pending"
-                android:textSize="@dimen/_12sdp"
-                android:textColor="#C62828"/>
+                android:textColor="#C62828"
+                android:textSize="@dimen/_12sdp" />
         </LinearLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

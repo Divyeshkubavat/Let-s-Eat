@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:text=" 12345678"
                     android:textStyle="bold"
-                    android:textColor="@color/app"
+                    android:textColor="#D32F2F"
                     android:textSize="@dimen/_15sdp"
                     android:layout_toRightOf="@id/temp"/>
                 <TextView
@@ -70,9 +70,12 @@
                     android:id="@+id/User_Account_Order_Detail_Timer"/>
             </RelativeLayout>
             <ScrollView
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/image_border">
+                android:background="@drawable/image_border"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp">
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

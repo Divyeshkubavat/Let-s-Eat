@@ -12,8 +12,17 @@ public class Order {
     private String date;
     private String address;
     private int deliveryBoyId;
+    private double finalPayment;
 
     public Order() {
+    }
+
+    public double getFinalPayment() {
+        return finalPayment;
+    }
+
+    public void setFinalPayment(double finalPayment) {
+        this.finalPayment = finalPayment;
     }
 
     public int getId() {

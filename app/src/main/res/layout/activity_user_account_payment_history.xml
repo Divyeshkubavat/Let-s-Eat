@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.User_Account_Payment_History">
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -32,12 +32,17 @@
                 android:background="@drawable/search_design"
                 android:textAppearance="@color/white"
                 app:queryHint="Search here ...."/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="@dimen/_12sdp"
-                android:id="@+id/User_Account_Payment_History_Recyclerview"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:listitem="@layout/activity_user_account_payment_history_design"/>
+                android:layout_height="match_parent">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:id="@+id/User_Account_Payment_History_Recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/activity_user_account_payment_history_design"/>
+            </ScrollView>
+
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

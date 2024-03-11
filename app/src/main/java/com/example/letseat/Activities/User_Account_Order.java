@@ -50,7 +50,7 @@ public class User_Account_Order extends AppCompatActivity {
             public void run() {
                 pg.dismiss();
             }
-        },1500);
+        },1000);
     }
     private void setData(){
         SharedPreferences preferences = getSharedPreferences("Login", MODE_PRIVATE);
@@ -64,7 +64,6 @@ public class User_Account_Order extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
                 User_Account_Order_Rcyclerview.setAdapter(adapter);
             }
-
             @Override
             public void onFailure(Call<List<Order>> call, Throwable t) {
 

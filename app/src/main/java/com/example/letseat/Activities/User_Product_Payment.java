@@ -61,10 +61,10 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
     TextView User_Product_Payment_Total,User_Product_Payment_Delivery_Charge,User_Product_Payment_Discount,User_Product_Payment_Final_Total;
     ProgressDialog pg;
     double deliveryCharge=50,finalTotal;
-    String t;
     double discount=0;
     double total;
     String Payment_Method,Payment_Status;
+    int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,13 +133,15 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
         } catch(Exception e) {
             Log.e("Error in starting Razorpay Checkout", e.toString());
         }
+
     }
 
     @Override
     public void onPaymentSuccess(String s) {
+        setOrder();
         SharedPreferences preferences = getSharedPreferences("Login", MODE_PRIVATE);
         String mobile = preferences.getString("Login_Mobile","");
-        userApi.deleteCartByMobileNo(Long.parseLong(mobile)).enqueue(new Callback<String>() {
+        userApi.deleteCartByMobileNo(Long.parseLong(mobile)).enqueue(new Callback<String>()  {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
             }
@@ -148,6 +150,7 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
             public void onFailure(Call<String> call, Throwable t) {
             }
         });
+
         startActivity(new Intent(getApplicationContext(), Payment_Thankyou.class));
     }
 
@@ -204,14 +207,11 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
         {
             Payment_Method="RazorPay";
             Payment_Status="Done";
-            setOrder();
             startPayment();
-            payment();
         }else
         {
             Payment_Method="Cash On Delivery";
             Payment_Status="Pending";
-            payment();
             setOrder();
             SharedPreferences preferences = getSharedPreferences("Login", MODE_PRIVATE);
             String mobile = preferences.getString("Login_Mobile","");
@@ -219,7 +219,6 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
                 }
-
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
                 }
@@ -239,12 +238,14 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
         p.setTotal(total);
         p.setDeliveryCharge(deliveryCharge);
         p.setFinalTotal(finalTotal);
+        p.setOrderId(id);
         userApi.setPayment(p).enqueue(new Callback<Payment>() {
             @Override
             public void onResponse(Call<Payment> call, Response<Payment> response) {
             }
             @Override
             public void onFailure(Call<Payment> call, Throwable t) {
+                Toast.makeText(User_Product_Payment.this, "Failed"+t, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -255,14 +256,15 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
         Order o = new Order();
         o.setMobileNo(Long.parseLong(mobile));
         o.setAddress(User_Product_Payment_Address.getText().toString());
-        SimpleDateFormat ft=new SimpleDateFormat("dd-MM-yyyy-HH-mm");
-        o.setDate(String.valueOf(ft.format(new Date())));
+        o.setDate(String.valueOf(new Date()));
         o.setState(1);
+        o.setFinalPayment(finalTotal);
         userApi.setOrder(o).enqueue(new Callback<Order>() {
             @Override
             public void onResponse(Call<Order> call, Response<Order> response) {
+                id=response.body().getId();
+                payment();
             }
-
             @Override
             public void onFailure(Call<Order> call, Throwable t) {
             }

@@ -123,4 +123,12 @@ public interface UserApi {
     Call<List<Order>> getAllOrder(
             @Query("mobileNo") long mobile
     );
+
+    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/orders/get")
+    Call<Order> getSingleOrder(
+            @Query("orderId") int id
+    );
+
+    @POST("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/orders/update-by-mobile-no")
+    Call<Order> updateOrderByMobileNo();
 }

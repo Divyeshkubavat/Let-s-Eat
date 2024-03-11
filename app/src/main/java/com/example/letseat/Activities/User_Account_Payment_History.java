@@ -55,10 +55,8 @@ public class User_Account_Payment_History extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
                 User_Account_Payment_History_Recyclerview.setAdapter(adapter);
             }
-
             @Override
             public void onFailure(Call<List<Payment>> call, Throwable t) {
-
             }
         });
     }
