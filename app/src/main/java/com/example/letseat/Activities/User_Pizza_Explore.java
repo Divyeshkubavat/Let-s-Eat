@@ -3,11 +3,13 @@ package com.example.letseat.Activities;
 import static com.example.letseat.Activities.MainActivity.listener;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -37,6 +39,7 @@ public class User_Pizza_Explore extends AppCompatActivity {
     productAdapterExplore pizzaAdapter;
     ArrayList<Product> pizzaList;
     LottieAnimationView pizza_lottie;
+    ImageView User_Pizza_Explore_Filter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class User_Pizza_Explore extends AppCompatActivity {
         setContentView(R.layout.activity_user_pizza_explore);
         User_Pizza_Explore_Searchview = findViewById(R.id.User_Pizza_Explore_Searchview);
         User_Pizza_Explore_Recyclerview=findViewById(R.id.User_Pizza_Explore_Recyclerview);
+        User_Pizza_Explore_Filter=findViewById(R.id.User_Pizza_Explore_Filter);
         pizza_lottie=findViewById(R.id.pizza_lottie);
         retrofitServices = new RetrofitServices();
         userApi = retrofitServices.getRetrofit().create(UserApi.class);
@@ -60,6 +64,12 @@ public class User_Pizza_Explore extends AppCompatActivity {
                 pg.dismiss();
             }
         },600);
+        User_Pizza_Explore_Filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),User_Product_Filter.class));
+            }
+        });
         User_Pizza_Explore_Searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

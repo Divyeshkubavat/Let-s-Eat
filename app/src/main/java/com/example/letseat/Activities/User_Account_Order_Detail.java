@@ -20,6 +20,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -80,6 +81,8 @@ public class User_Account_Order_Detail extends AppCompatActivity {
     ProgressDialog pg;
     TextView User_Account_Order_Detail_Order_ID,User_Account_Order_Detail_Toatl;
     int orderId;
+    int rate;
+    LinearLayout ratingTextview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +103,7 @@ public class User_Account_Order_Detail extends AppCompatActivity {
         Order_Accept_View=findViewById(R.id.Order_Track_Accept_Order_Line);
         Order_Process_View=findViewById(R.id.Order_Track_Process_Order_Line);
         Out_For_Delivery_View=findViewById(R.id.Order_Track_Out_For_Deliver_Line);
+        ratingTextview=findViewById(R.id.l3);
         User_Account_Order_Detail_Order_ID=findViewById(R.id.User_Account_Order_Detail_Order_ID);
         User_Account_Order_Detail_Toatl=findViewById(R.id.User_Account_Order_Detail_Toatl);
         User_Account_Order_Detail_RatingBar_Submit_Button=findViewById(R.id.User_Account_Order_Detail_RatingBar_Submit_Button);
@@ -143,23 +147,25 @@ public class User_Account_Order_Detail extends AppCompatActivity {
                 },2000);
             }
         });
+
         User_Account_Order_Detail_RatingBar_Submit_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int rate = (int) User_Account_Order_Detail_RatingBar.getRating();
-                Order o = new Order();
-                o.setRating(rate);
-                userApi.updateOrder(orderId,o).enqueue(new Callback<Order>() {
-                    @Override
-                    public void onResponse(Call<Order> call, Response<Order> response) {
-                        Toast.makeText(User_Account_Order_Detail.this, "Thank You For Rating", Toast.LENGTH_SHORT).show();
-                    }
+                    int rate = (int) User_Account_Order_Detail_RatingBar.getRating();
+                    Order o = new Order();
+                    o.setRating(rate);
+                    userApi.updateOrder(orderId,o).enqueue(new Callback<Order>() {
+                        @Override
+                        public void onResponse(Call<Order> call, Response<Order> response) {
+                            Toast.makeText(User_Account_Order_Detail.this, "Thank You For Rating", Toast.LENGTH_SHORT).show();
+                        }
 
-                    @Override
-                    public void onFailure(Call<Order> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<Order> call, Throwable t) {
 
-                    }
-                });
+                        }
+                    });
+
             }
         });
 
@@ -325,6 +331,16 @@ public class User_Account_Order_Detail extends AppCompatActivity {
             public void onResponse(Call<Order> call, Response<Order> response) {
                 String finalTotal = String.valueOf(response.body().getFinalPayment());
                 User_Account_Order_Detail_Toatl.setText("₹"+finalTotal);
+                rate=response.body().getRating();
+                if(rate==0){
+                    ratingTextview.setVisibility(View.VISIBLE);
+                    User_Account_Order_Detail_RatingBar_Submit_Button.setVisibility(View.VISIBLE);
+                    User_Account_Order_Detail_RatingBar.setVisibility(View.VISIBLE);
+                }else{
+                    ratingTextview.setVisibility(View.GONE);
+                    User_Account_Order_Detail_RatingBar_Submit_Button.setVisibility(View.GONE);
+                    User_Account_Order_Detail_RatingBar.setVisibility(View.GONE);
+                }
                 String date=response.body().getDate();
                 Date d = new Date(date);
                 int min=d.getMinutes();

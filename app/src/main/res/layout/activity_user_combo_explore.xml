@@ -39,7 +39,7 @@
                 <ImageView
                     android:layout_width="@dimen/_35sdp"
                     android:layout_height="@dimen/_35sdp"
-                    android:src="@drawable/filter"
+                    android:src="@drawable/baseline_filter_list_24"
                     app:tint="@color/app"
                     android:id="@+id/User_Combo_Explore_Filter"
                     android:layout_marginLeft="@dimen/_10sdp"

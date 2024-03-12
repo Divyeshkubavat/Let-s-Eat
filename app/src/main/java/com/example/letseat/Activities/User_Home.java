@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -132,14 +133,11 @@ public class User_Home extends Fragment {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
-                if(id == R.id.User_Home_Screen_Search)
-                {
-                    startActivity(new Intent(getContext().getApplicationContext(),User_Home_Screen_Search.class));
-                }
-                if(id == R.id.User_Home_Screen_Filter)
-                {
-                    startActivity(new Intent(getContext().getApplicationContext(),User_Product_Filter.class));
-                }
+               if(id==R.id.User_Home_Screen_Search)
+               {
+                   startActivity(new Intent(getContext(),User_Home_Screen_Search.class));
+                   return true;
+               }
                 return false;
             }
         });

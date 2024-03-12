@@ -3,11 +3,13 @@ package com.example.letseat.Activities;
 import static com.example.letseat.Activities.MainActivity.listener;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -39,12 +41,14 @@ public class User_Burger_Explore extends AppCompatActivity {
     productAdapterExplore burgerAdapter;
     ArrayList<Product> burgerList;
     LottieAnimationView burger_lottie;
+    ImageView User_burger_Explore_Filter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_burger_explore);
         User_Burger_Explore_Searchview = findViewById(R.id.User_Burger_Explore_Searchview);
         User_Burger_Explore_Recyclerview=findViewById(R.id.User_burger_Explore_Recyclerview);
+        User_burger_Explore_Filter=findViewById(R.id.User_burger_Explore_Filter);
         burger_lottie=findViewById(R.id.burger_lottie);
         retrofitServices = new RetrofitServices();
         userApi = retrofitServices.getRetrofit().create(UserApi.class);
@@ -61,6 +65,12 @@ public class User_Burger_Explore extends AppCompatActivity {
                 pg.dismiss();
             }
         },600);
+        User_burger_Explore_Filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),User_Product_Filter.class));
+            }
+        });
         User_Burger_Explore_Searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

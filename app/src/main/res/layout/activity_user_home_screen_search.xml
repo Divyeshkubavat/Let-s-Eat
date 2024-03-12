@@ -30,9 +30,9 @@
                     app:queryHint="Search here ...." />
                 <ImageView
                     android:id="@+id/User_Home_Screen_Search_Filter"
-                    android:layout_width="@dimen/_35sdp"
+                    android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_35sdp"
-                    android:src="@drawable/filter"
+                    android:src="@drawable/baseline_filter_list_24"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_alignParentEnd="true"
                     app:tint="@color/app"

@@ -3,11 +3,13 @@ package com.example.letseat.Activities;
 import static com.example.letseat.Activities.MainActivity.listener;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -34,6 +36,7 @@ public class User_Home_Screen_Search extends AppCompatActivity {
 
     SearchView User_Home_Screen_Search_Searchview;
     RecyclerView User_Home_Screen_Search_Recyclerview;
+    ImageView User_Home_Screen_Search_Filter;
     RetrofitServices retrofitServices;
     UserApi userApi;
     productAdapterExplore adapter;
@@ -47,6 +50,7 @@ public class User_Home_Screen_Search extends AppCompatActivity {
         setContentView(R.layout.activity_user_home_screen_search);
         User_Home_Screen_Search_Recyclerview=findViewById(R.id.User_home_Screen_Search_Recyclerview);
         User_Home_Screen_Search_Searchview=findViewById(R.id.User_Home_Screen_Search_Searchview);
+        User_Home_Screen_Search_Filter=findViewById(R.id.User_Home_Screen_Search_Filter);
         search_lottie=findViewById(R.id.search_lottie);
         retrofitServices = new RetrofitServices();
         userApi = retrofitServices.getRetrofit().create(UserApi.class);
@@ -65,6 +69,12 @@ public class User_Home_Screen_Search extends AppCompatActivity {
                 pg.dismiss();
             }
         },1500);
+        User_Home_Screen_Search_Filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),User_Product_Filter.class));
+            }
+        });
         User_Home_Screen_Search_Searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

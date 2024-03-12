@@ -148,4 +148,9 @@ public interface UserApi {
     Call<List<Product>> searchProduct(
             @Query("keyword") String key,@Query("categoryId") int id
     );
+
+    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/product/filter")
+    Call<List<Product>> filterProduct(
+            @Query("categoryId") int cid,@Query("type") String type,@Query("maxPrice") double price
+    );
 }

@@ -3,11 +3,13 @@ package com.example.letseat.Activities;
 import static com.example.letseat.Activities.MainActivity.listener;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -38,6 +40,7 @@ public class User_Drink_Explore extends AppCompatActivity {
     productAdapterExplore drinkAdapter;
     ArrayList<Product> drinkList;
     LottieAnimationView drink_lottie;
+    ImageView User_Drink_Explore_Filter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,12 @@ public class User_Drink_Explore extends AppCompatActivity {
         setContentView(R.layout.activity_user_drink_explore);
         User_Drink_Explore_Searchview = findViewById(R.id.User_Drink_Explore_Searchview);
         User_Drink_Explore_Recyclerview=findViewById(R.id.User_Drink_Explore_Recyclerview);
+        User_Drink_Explore_Filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),User_Product_Filter.class));
+            }
+        });
         drink_lottie=findViewById(R.id.drink_lottie);
         retrofitServices = new RetrofitServices();
         userApi = retrofitServices.getRetrofit().create(UserApi.class);
