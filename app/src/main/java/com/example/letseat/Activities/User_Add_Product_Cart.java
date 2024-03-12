@@ -1,7 +1,11 @@
 package com.example.letseat.Activities;
 
+import static com.example.letseat.Activities.MainActivity.listener;
+
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -234,4 +238,16 @@ public class User_Add_Product_Cart extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(listener,filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(listener);
+        super.onStop();
+    }
 }

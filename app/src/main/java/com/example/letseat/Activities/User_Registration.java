@@ -1,10 +1,13 @@
 package com.example.letseat.Activities;
 
+import static com.example.letseat.Activities.MainActivity.listener;
 import static java.lang.Long.parseLong;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -148,5 +151,18 @@ public class User_Registration extends AppCompatActivity {
         intent.putExtra("User_Email",email);
         intent.putExtra("User_Mobile",mobile);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(listener,filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(listener);
+        super.onStop();
     }
 }

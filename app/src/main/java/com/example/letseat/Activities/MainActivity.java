@@ -21,7 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView navigationView;
     ProgressDialog pg;
-    NetworkChangeListener listener = new NetworkChangeListener();
+    public static final NetworkChangeListener listener = new NetworkChangeListener();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

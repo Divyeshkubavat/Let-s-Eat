@@ -1,9 +1,13 @@
 package com.example.letseat.Activities;
 
+import static com.example.letseat.Activities.MainActivity.listener;
+
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -154,7 +158,7 @@ public class User_Login extends AppCompatActivity {
                         User_Login_Progressbar.cancel();
 
                     } else if (temp.equals("401")) {
-                        Toast.makeText(User_Login.this, "Password Incorect", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(User_Login.this, "Password Incorrect", Toast.LENGTH_SHORT).show();
                         User_Login_Progressbar.cancel();
                     }else
                     {
@@ -171,5 +175,18 @@ public class User_Login extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(listener);
+        super.onStop();
+    }
+
+    @Override
+    protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(listener,filter);
+        super.onStart();
     }
 }
