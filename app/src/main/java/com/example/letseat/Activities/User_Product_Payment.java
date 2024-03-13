@@ -294,6 +294,7 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
                    double temp = total*code/100;
                    User_Product_Payment_Discount.setText(String.valueOf(temp));
                     total=total-temp;
+                    finalTotal=total+deliveryCharge;
                     User_Product_Payment_Final_Total.setText(String.valueOf(total+deliveryCharge));
                 }
 
