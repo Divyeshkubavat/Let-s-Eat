@@ -153,4 +153,9 @@ public interface UserApi {
     Call<List<Product>> filterProduct(
             @Query("categoryId") int cid,@Query("type") String type,@Query("maxPrice") double price
     );
+
+    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/discount-code/verify")
+    Call<String> verify(
+            @Query("discountCode") String code
+    );
 }

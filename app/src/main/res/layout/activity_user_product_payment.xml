@@ -172,7 +172,7 @@
                         android:drawableLeft="@drawable/baseline_emoji_emotions_24"
                         android:drawablePadding="@dimen/_8sdp"
                         android:hint="Apply Code"
-                        android:maxLength="6"
+                        android:maxLength="10"
                         android:padding="@dimen/_12sdp"
                         android:singleLine="true" />
                 </com.google.android.material.textfield.TextInputLayout>

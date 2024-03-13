@@ -68,6 +68,7 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
     double total;
     String Payment_Method,Payment_Status;
     int id;
+    double code;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +105,12 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
             @Override
             public void onClick(View view) {
                 paymentMethod();
+            }
+        });
+        User_Product_Payment_Code_Check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                codeVerify();
             }
         });
     }
@@ -271,6 +278,30 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
             }
             @Override
             public void onFailure(Call<Order> call, Throwable t) {
+            }
+        });
+    }
+
+    private void   codeVerify(){
+        userApi.verify(User_Product_Payment_Apply_Code.getText().toString()).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                code = Double.parseDouble(response.body());
+                if(code==0){
+                    Toast.makeText(User_Product_Payment.this, "Sorry Code Is Expire", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(User_Product_Payment.this, "Congratulations you Got Discount of "+String.valueOf(code)+"%", Toast.LENGTH_SHORT).show();
+                   double temp = total*code/100;
+                   User_Product_Payment_Discount.setText(String.valueOf(temp));
+                    total=total-temp;
+                    User_Product_Payment_Final_Total.setText(String.valueOf(total+deliveryCharge));
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
             }
         });
     }

@@ -48,6 +48,7 @@ public class User_Combo_Explore extends AppCompatActivity {
         setContentView(R.layout.activity_user_combo_explore);
         User_Combo_Explore_Searchview = findViewById(R.id.User_Combo_Explore_Searchview);
         User_Combo_Explore_Recyclerview=findViewById(R.id.User_Combo_Explore_Recyclerview);
+        User_Combo_Explore_Filter=findViewById(R.id.User_Combo_Explore_Filter);
         User_Combo_Explore_Filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
