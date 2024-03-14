@@ -48,6 +48,7 @@ public class User_Drink_Explore extends AppCompatActivity {
         setContentView(R.layout.activity_user_drink_explore);
         User_Drink_Explore_Searchview = findViewById(R.id.User_Drink_Explore_Searchview);
         User_Drink_Explore_Recyclerview=findViewById(R.id.User_Drink_Explore_Recyclerview);
+        User_Drink_Explore_Filter=findViewById(R.id.User_Drink_Explore_Filter);
         User_Drink_Explore_Filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
