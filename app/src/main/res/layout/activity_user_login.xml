@@ -99,13 +99,23 @@
                                 android:padding="@dimen/_12sdp"
                                 android:hint="Password"/>
                         </com.google.android.material.textfield.TextInputLayout>
+                        <TextView
+                            android:id="@+id/Forget_Password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:clickable="true"
+                            android:text="Forget Password ?"
+                            android:textAlignment="viewEnd"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:textColor="@color/app"/>
                         <Button
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/User_Login_Button"
                             android:text="Login"
                             android:textSize="@dimen/_14sdp"
-                            android:layout_marginTop="@dimen/_24sdp"
+                            android:layout_marginTop="@dimen/_15sdp"
                             android:backgroundTintMode="add"
                             android:textColor="@color/white"
                             android:background="@drawable/shape_button"/>

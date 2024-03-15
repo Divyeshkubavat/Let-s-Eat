@@ -20,6 +20,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.letseat.Model.ForgetPassword;
 import com.example.letseat.Model.Login;
 import com.example.letseat.Model.User;
 import com.example.letseat.R;
@@ -45,6 +46,7 @@ public class User_Login extends AppCompatActivity {
     UserApi userApi;
 
     List<Login> Login_List;
+    TextView Forget_Password;
 
 
     @Override
@@ -60,8 +62,15 @@ public class User_Login extends AppCompatActivity {
         User_Login_Password=findViewById(R.id.User_Login_Password);
         User_Login_Animation=findViewById(R.id.User_Login_Animation);
         User_Login_Signup=findViewById(R.id.User_Login_Signup);
+        Forget_Password=findViewById(R.id.Forget_Password);
         retrofitServices = new RetrofitServices();
         userApi = retrofitServices.getRetrofit().create(UserApi.class);
+        Forget_Password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),Forgot_Password.class));
+            }
+        });
        User_Login_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

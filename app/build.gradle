@@ -29,6 +29,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    packagingOptions{
+        exclude 'META-INF/NOTICE.md'
+        exclude 'META_INF/LICENSE.md'
+    }
 }
 
 dependencies {
@@ -61,4 +65,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
     implementation 'com.android.support:multidex:2.0.1'
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
+    implementation 'com.sun.mail:android-activation:1.6.7'
+    implementation 'com.sun.mail:android-mail:1.5.6'
 }

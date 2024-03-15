@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.provider.SyncStateContract;
 
 import com.example.letseat.Model.Cart;
+import com.example.letseat.Model.ForgetPassword;
 import com.example.letseat.Model.Login;
 import com.example.letseat.Model.Offer;
 import com.example.letseat.Model.Order;
@@ -52,6 +53,16 @@ public interface UserApi {
     @PUT("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/user/update")
     Call<User> updateProfile(
             @Query("userId") int id,@Body User user
+    );
+
+    @PUT("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/user/update-password-by-email")
+    Call<User> updatePasswordByEmail(
+            @Query("email") String mail ,@Query("password") String pass
+    );
+
+    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/user/verify-email")
+    Call<String> verifyEmailForForgetPass(
+            @Query("email") String mail
     );
 
     @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/offer/get-all")
