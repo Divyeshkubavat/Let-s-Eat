@@ -322,15 +322,16 @@ public class User_Account_Order_Detail extends AppCompatActivity {
     private void setData(){
         Intent i = getIntent();
         orderId= i.getIntExtra("oid",0);
-        Order_Status = Integer.parseInt(String.valueOf(i.getIntExtra("status",0)));
         SharedPreferences preferences = getSharedPreferences("Login", MODE_PRIVATE);
         String mobile = preferences.getString("Login_Mobile","");
-        Track();
+
         userApi.getSingleOrder(orderId).enqueue(new Callback<Order>() {
             @Override
             public void onResponse(Call<Order> call, Response<Order> response) {
                 String finalTotal = String.valueOf(response.body().getFinalPayment());
                 User_Account_Order_Detail_Toatl.setText("₹"+finalTotal);
+                Order_Status=response.body().getState();
+                Track();
                 rate=response.body().getRating();
                 if(rate==0){
                     ratingTextview.setVisibility(View.VISIBLE);
@@ -423,7 +424,6 @@ public class User_Account_Order_Detail extends AppCompatActivity {
         super.onResume();
         setData();
         getData();
-        Track();
     }
 
     @Override
@@ -431,7 +431,6 @@ public class User_Account_Order_Detail extends AppCompatActivity {
         super.onStart();
         setData();
         getData();
-        Track();
     }
 
     @Override
