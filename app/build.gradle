@@ -10,12 +10,10 @@ android {
 
     defaultConfig {
         applicationId "com.example.letseat"
-        minSdk 21
+        minSdk 27
         targetSdk 33
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -63,7 +61,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
     implementation 'com.squareup.retrofit2:retrofit:2.7.2'
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
-    implementation 'com.android.support:multidex:2.0.1'
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
     implementation 'com.sun.mail:android-activation:1.6.7'
     implementation 'com.sun.mail:android-mail:1.5.6'
