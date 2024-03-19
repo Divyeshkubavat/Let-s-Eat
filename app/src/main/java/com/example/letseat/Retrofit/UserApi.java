@@ -34,138 +34,138 @@ import retrofit2.http.Url;
 public interface UserApi {
 
 
-    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/user")
+    @GET(AppConstants.api+"/lets-eat/user")
     Call<List<User>> getUser();
 
 
-    @POST("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/user/add")
+    @POST(AppConstants.api+"/lets-eat/user/add")
     Call<User> save(@Body User user);
 
 
-    @POST("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/user/login")
+    @POST(AppConstants.api+"/lets-eat/user/login")
     Call<String> Verify(@Body Login login);
 
-    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/user/get-by-mobile-no")
+    @GET(AppConstants.api+"/lets-eat/user/get-by-mobile-no")
     Call<User> getSingleUser(
            @Query("mobileNo") long id
            );
 
-    @PUT("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/user/update")
+    @PUT(AppConstants.api+"/lets-eat/user/update")
     Call<User> updateProfile(
             @Query("userId") int id,@Body User user
     );
 
-    @PUT("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/user/update-password-by-email")
+    @PUT(AppConstants.api+"/lets-eat/user/update-password-by-email")
     Call<User> updatePasswordByEmail(
             @Query("email") String mail ,@Query("password") String pass
     );
 
-    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/user/verify-email")
+    @GET(AppConstants.api+"/lets-eat/user/verify-email")
     Call<String> verifyEmailForForgetPass(
             @Query("email") String mail
     );
 
-    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/offer/get-all")
+    @GET(AppConstants.api+"/lets-eat/offer/get-all")
     Call<List<Offer>> getAllOffer();
 
-    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/product/get-by-category-id")
+    @GET(AppConstants.api+"/lets-eat/product/get-by-category-id")
     Call<List<Product>> getSingleProduct(
             @Query("categoryId") int id
     );
 
-    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/product/get")
+    @GET(AppConstants.api+"/lets-eat/product/get")
     Call<Product> getProductById(
             @Query("productId") int id
     );
 
-    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/product/get-all")
+    @GET(AppConstants.api+"/lets-eat/product/get-all")
     Call<List<Product>> getAllProduct();
 
-    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/product/search")
+    @GET(AppConstants.api+"/lets-eat/product/search")
     Call<List<Product>> searchProduct(
             @Query("keyword") String key
     );
 
-    @POST("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/cart/add")
+    @POST(AppConstants.api+"/lets-eat/cart/add")
     Call<Cart> setCart(@Body Cart cart);
 
-    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/cart/get-by-mobile-no")
+    @GET(AppConstants.api+"/lets-eat/cart/get-by-mobile-no")
     Call<List<Cart>> getCartByMobileNumber(
             @Query("mobileNo") long mobileNo
     );
 
-    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/cart/get-total-by-mobile-no")
+    @GET(AppConstants.api+"/lets-eat/cart/get-total-by-mobile-no")
     Call<Double> getCartTotalByMobileNo(
             @Query("mobileNo") long mobileNo
     );
 
-    @PUT("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/cart/update")
+    @PUT(AppConstants.api+"/lets-eat/cart/update")
     Call<Cart> updateCart(
             @Query("cartId") int id,@Body Cart cart
     );
 
-    @DELETE("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/cart/delete")
+    @DELETE(AppConstants.api+"/lets-eat/cart/delete")
     Call<String> deleteCartById(
             @Query("cartId") int id
     );
 
-    @DELETE("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/cart/delete-by-mobile-no")
+    @DELETE(AppConstants.api+"/lets-eat/cart/delete-by-mobile-no")
     Call<String> deleteCartByMobileNo(
             @Query("mobileNo") long mobileNo
     );
 
-    @POST("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/payment/add")
+    @POST(AppConstants.api+"/lets-eat/payment/add")
     Call<Payment> setPayment(@Body Payment payment);
 
-    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/payment/get-by-mobile-no")
+    @GET(AppConstants.api+"/lets-eat/payment/get-by-mobile-no")
     Call<List<Payment>> getPaymentByMobileNo(
             @Query("mobileNo") long id
     );
 
-    @PUT("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/payment/update-by-mobile-no")
+    @PUT(AppConstants.api+"/lets-eat/payment/update-by-mobile-no")
     Call<Payment> updatePaymentByMobileNo(
             @Query("mobileNo") long id,@Body Payment p
     );
 
-    @POST("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/orders/execute-order")
+    @POST(AppConstants.api+"/lets-eat/orders/execute-order")
     Call<Order> setOrder(@Body Order order);
 
-    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/orders/get-by-mobile-no")
+    @GET(AppConstants.api+"/lets-eat/orders/get-by-mobile-no")
     Call<List<Order>> getAllOrder(
             @Query("mobileNo") long mobile
     );
 
-    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/orders/get")
+    @GET(AppConstants.api+"/lets-eat/orders/get")
     Call<Order> getSingleOrder(
             @Query("orderId") int id
     );
 
-    @DELETE("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/orders/delete")
+    @DELETE(AppConstants.api+"/lets-eat/orders/delete")
     Call<String> deleteByOrderId(
             @Query("orderId") int id
     );
 
-    @DELETE("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/payment/delete-by-order-id")
+    @DELETE(AppConstants.api+"/lets-eat/payment/delete-by-order-id")
     Call<String> deletePaymentByOrderId(
             @Query("orderId") int id
     );
 
-    @PUT("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/orders/update")
+    @PUT(AppConstants.api+"/lets-eat/orders/update")
     Call<Order> updateOrder(
             @Query("orderId") int id,@Body Order order
             );
 
-    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/product/category-wise-search")
+    @GET(AppConstants.api+"/lets-eat/product/category-wise-search")
     Call<List<Product>> searchProduct(
             @Query("keyword") String key,@Query("categoryId") int id
     );
 
-    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/product/filter")
+    @GET(AppConstants.api+"/lets-eat/product/filter")
     Call<List<Product>> filterProduct(
             @Query("categoryId") int cid,@Query("type") String type,@Query("maxPrice") double price
     );
 
-    @GET("http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com/lets-eat/discount-code/verify")
+    @GET(AppConstants.api+"/lets-eat/discount-code/verify")
     Call<String> verify(
             @Query("discountCode") String code
     );
