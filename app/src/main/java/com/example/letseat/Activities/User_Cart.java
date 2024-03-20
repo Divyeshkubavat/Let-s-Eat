@@ -37,6 +37,8 @@ import retrofit2.Response;
 
 public class User_Cart extends Fragment {
 
+    public static int item;
+
     RecyclerView cart_RecyclerView;
     public static TextView cartTotal;
     Button cartCheckOut;
@@ -111,7 +113,6 @@ public class User_Cart extends Fragment {
                     cart_lottie.setVisibility(View.GONE);
                     cart_RecyclerView.setAdapter(adapter);
                 }
-
             }
 
             @Override

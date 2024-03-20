@@ -4,6 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 import static com.example.letseat.Activities.User_Cart.cartTotal;
 import static com.example.letseat.Activities.User_Cart.cart_lottie;
+import static com.example.letseat.Activities.User_Cart.item;
 import static com.example.letseat.Activities.User_Cart.total;
 
 import android.content.Context;
@@ -63,6 +64,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final Cart c = list.get(position);
+        item=list.size();
         userApi.getProductById(c.getProductId()).enqueue(new Callback<Product>() {
             @Override
             public void onResponse(Call<Product> call, Response<Product> response) {
@@ -103,6 +105,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
                         Toast.makeText(context, "Cart Product Deleted", Toast.LENGTH_SHORT).show();
+
                     }
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
@@ -110,6 +113,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                     }
                 });
                 list.remove(position);
+
                 notifyItemRemoved(position);
                 notifyDataSetChanged();
                 new Handler().postDelayed(new Runnable() {
@@ -121,6 +125,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                                 double t = response.body();
                                 total=t;
                                 cartTotal.setText("Total : "+ String.valueOf(t));
+                                item=list.size();
+                                if(total==0){
+                                    cart_lottie.setVisibility(View.VISIBLE);
+                                }
                             }
 
                             @Override
@@ -128,7 +136,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
                             }
                         });
-                        cart_lottie.setVisibility(View.VISIBLE);
                     }
                 },1000);
             }

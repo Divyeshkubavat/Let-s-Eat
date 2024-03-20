@@ -67,10 +67,10 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/custom_edittext"
                                 android:padding="@dimen/_12sdp"
-                                android:inputType="text"
+                                android:inputType="number"
                                 android:hint="Mobile Number"
                                 android:id="@+id/User_Login_ID"
-                                android:maxLength="18"
+                                android:maxLength="10"
                                 android:singleLine="true"
                                 android:drawableLeft="@drawable/baseline_local_phone_24"
                                 android:drawablePadding="@dimen/_8sdp"/>

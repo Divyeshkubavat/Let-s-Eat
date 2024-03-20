@@ -158,7 +158,14 @@ public class Forgot_Password extends AppCompatActivity {
         }
     }
     private void changePass(){
-        if(pass.getText().toString().equals(confirm_pass.getText().toString())){
+        if(pass.getText().toString().equals("") || confirm_pass.getText().toString().equals("")){
+            if(pass.getText().toString().equals("")){
+                pass.setError("* Required");
+            }
+            if(confirm_pass.getText().toString().equals("")){
+                confirm_pass.setError("* Required");
+            }
+        }else if(pass.getText().toString().equals(confirm_pass.getText().toString())){
             userApi.updatePasswordByEmail(email.getText().toString(),pass.getText().toString()).enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {

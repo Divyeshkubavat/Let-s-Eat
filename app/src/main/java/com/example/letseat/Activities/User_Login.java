@@ -86,7 +86,7 @@ public class User_Login extends AppCompatActivity {
                     },1500);
                 }
                 else {
-                    Toast.makeText(User_Login.this, "Please enter valid Admin ID or password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(User_Login.this, "Please enter valid Mobile Number or password", Toast.LENGTH_SHORT).show();
                 }
             }
         });
