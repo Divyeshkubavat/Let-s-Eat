@@ -169,4 +169,8 @@ public interface UserApi {
     Call<String> verify(
             @Query("discountCode") String code
     );
+    @GET(AppConstants.api+"/lets-eat/payment/get")
+    Call<Payment> getSinglePayment(
+            @Query("paymentId") int id
+    );
 }

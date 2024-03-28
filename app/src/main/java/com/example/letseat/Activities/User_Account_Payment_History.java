@@ -54,7 +54,7 @@ public class User_Account_Payment_History extends AppCompatActivity {
         list = new ArrayList<>();
         pg = new ProgressDialog(User_Account_Payment_History.this);
         pg.setTitle("Loading..... ");
-        pg.setMessage("Please wait Deleting Order ....");
+        pg.setMessage("Please wait Fetching Data ....");
         pg.setCanceledOnTouchOutside(false);
         pg.show();
         setData();

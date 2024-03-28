@@ -1,5 +1,5 @@
 package com.example.letseat.Retrofit;
 
 public class AppConstants {
-    public static final String api="http://letseat-env.eba-mvj8pngz.eu-north-1.elasticbeanstalk.com";
+    public static final String api="http://lets-eat-env.eba-c2ajsn4u.eu-north-1.elasticbeanstalk.com";
 }

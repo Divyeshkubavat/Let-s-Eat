@@ -309,7 +309,6 @@ public class User_Account_Order_Detail extends AppCompatActivity {
                 long min = (l / 60000) % 60;
                 long sec = (l / 1000) % 60;
                 Timer.setText(numberFormat.format(min) + ":" + numberFormat.format(sec));
-
             }
             @Override
             public void onFinish() {

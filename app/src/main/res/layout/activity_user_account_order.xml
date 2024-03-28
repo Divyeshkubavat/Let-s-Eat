@@ -16,21 +16,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:gravity="end"
                     android:layout_marginTop="@dimen/_20sdp">
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:drawableRight="@drawable/baseline_arrow_back_ios_24"
-                       android:layout_gravity="center_vertical"
-                       android:layout_marginLeft="@dimen/_15sdp"
-                       android:background="#BAFBF9F9"/>
+
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="MY ORDER"
                         android:textAlignment="viewEnd"
                         android:textSize="@dimen/_20sdp"
                         android:textStyle="bold"
+                        android:drawableLeft="@drawable/baseline_arrow_back_ios_24"
+                        android:drawablePadding="@dimen/_5sdp"
                         android:layout_marginRight="@dimen/_15sdp"
                         android:textColor="@color/app"/>
                 </LinearLayout>

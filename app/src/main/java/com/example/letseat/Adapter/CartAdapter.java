@@ -113,7 +113,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                     }
                 });
                 list.remove(position);
-
                 notifyItemRemoved(position);
                 notifyDataSetChanged();
                 new Handler().postDelayed(new Runnable() {
