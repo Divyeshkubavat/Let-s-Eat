@@ -134,7 +134,7 @@ public class User_Account_Order_Detail extends AppCompatActivity {
                 paymentDelete();
                 pg = new ProgressDialog(User_Account_Order_Detail.this);
                 pg.setTitle("Loading..... ");
-                pg.setMessage("Please wait we fetch your data... ");
+                pg.setMessage("Please wait deleting order... ");
                 pg.setCanceledOnTouchOutside(false);
                 pg.show();
 
