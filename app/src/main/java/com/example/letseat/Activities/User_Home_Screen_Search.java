@@ -48,6 +48,7 @@ public class User_Home_Screen_Search extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_home_screen_search);
+
         User_Home_Screen_Search_Recyclerview=findViewById(R.id.User_home_Screen_Search_Recyclerview);
         User_Home_Screen_Search_Searchview=findViewById(R.id.User_Home_Screen_Search_Searchview);
         User_Home_Screen_Search_Filter=findViewById(R.id.User_Home_Screen_Search_Filter);
@@ -58,6 +59,7 @@ public class User_Home_Screen_Search extends AppCompatActivity {
         pg = new ProgressDialog(User_Home_Screen_Search.this);
         pg.setTitle("Loading..... ");
         pg.setMessage("Please wait we fetch your data... ");
+        pg.setIcon(R.drawable.logo);
         pg.setCanceledOnTouchOutside(false);
         pg.show();
         setData();

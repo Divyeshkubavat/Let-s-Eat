@@ -49,6 +49,7 @@ public class User_Add_Product_Cart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_add_product_cart);
+
         User_Add_Product_Cart_Ratingbar=findViewById(R.id.User_Add_Product_Cart_Ratingbar);
         Product_Image=findViewById(R.id.User_Add_Product_Cart_Image);
         Product_Name=findViewById(R.id.User_Add_Product_Cart_Name);

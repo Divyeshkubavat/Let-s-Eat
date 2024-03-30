@@ -46,6 +46,7 @@ public class User_Account_Payment_History extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_account_payment_history);
+
         User_Account_Payment_History_Recyclerview=findViewById(R.id.User_Account_Payment_History_Recyclerview);
         User_Account_Payment_History_Searchview=findViewById(R.id.User_Account_Payment_History_Searchview);
         payment_lottie=findViewById(R.id.payment_lottie);
@@ -55,6 +56,7 @@ public class User_Account_Payment_History extends AppCompatActivity {
         pg = new ProgressDialog(User_Account_Payment_History.this);
         pg.setTitle("Loading..... ");
         pg.setMessage("Please wait Fetching Data ....");
+        pg.setIcon(R.drawable.logo);
         pg.setCanceledOnTouchOutside(false);
         pg.show();
         setData();

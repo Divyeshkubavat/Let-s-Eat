@@ -45,6 +45,7 @@ public class User_Pizza_Explore extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_pizza_explore);
+
         User_Pizza_Explore_Searchview = findViewById(R.id.User_Pizza_Explore_Searchview);
         User_Pizza_Explore_Recyclerview=findViewById(R.id.User_Pizza_Explore_Recyclerview);
         User_Pizza_Explore_Filter=findViewById(R.id.User_Pizza_Explore_Filter);
@@ -55,6 +56,7 @@ public class User_Pizza_Explore extends AppCompatActivity {
         pg = new ProgressDialog(User_Pizza_Explore.this);
         pg.setTitle("Loading..... ");
         pg.setMessage("Please wait we fetch your data... ");
+        pg.setIcon(R.drawable.logo);
         pg.setCanceledOnTouchOutside(false);
         pg.show();
         setProduct();

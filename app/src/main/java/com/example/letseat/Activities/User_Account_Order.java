@@ -42,6 +42,7 @@ public class User_Account_Order extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_account_order);
+
         User_Account_Order_Rcyclerview=findViewById(R.id.User_Account_Order_Rcyclerview);
         order_lottie=findViewById(R.id.order_lottie);
         retrofitServices = new RetrofitServices();
@@ -50,6 +51,7 @@ public class User_Account_Order extends AppCompatActivity {
         pg = new ProgressDialog(User_Account_Order.this);
         pg.setTitle("Loading..... ");
         pg.setMessage("Please wait we fetch your data... ");
+        pg.setIcon(R.drawable.logo);
         pg.setCanceledOnTouchOutside(false);
         pg.show();
         setData();

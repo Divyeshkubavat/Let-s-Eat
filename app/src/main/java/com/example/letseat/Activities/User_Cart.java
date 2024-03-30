@@ -65,6 +65,7 @@ public class User_Cart extends Fragment {
         pg = new ProgressDialog(getActivity());
         pg.setTitle("Loading..... ");
         pg.setMessage("Please wait we fetch your data... ");
+        pg.setIcon(R.drawable.logo);
         pg.setCanceledOnTouchOutside(false);
         pg.show();
         setData();

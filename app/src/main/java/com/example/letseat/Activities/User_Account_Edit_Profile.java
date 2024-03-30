@@ -3,6 +3,7 @@ package com.example.letseat.Activities;
 import static com.example.letseat.Activities.MainActivity.listener;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -42,10 +43,16 @@ public class User_Account_Edit_Profile extends AppCompatActivity {
     RetrofitServices retrofitServices;
     UserApi userApi;
     int id;
+    ProgressDialog pg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        pg=new ProgressDialog(this);
+        pg.setTitle("Update ...");
+        pg.setMessage("Please Wait Update profile ...");
+        pg.setIcon(R.drawable.logo);
         setContentView(R.layout.activity_user_account_edit_profile);
         User_Account_Edit_Email=findViewById(R.id.User_Account_Edit_Email);
         User_Account_Edit_DOB=findViewById(R.id.User_Account_Edit_DOB);
@@ -179,6 +186,7 @@ public class User_Account_Edit_Profile extends AppCompatActivity {
         });
     }
     public void updateUser(){
+        pg.show();
         String name,pass,email,date,mobile,address;
         name = User_Account_Edit_Name.getText().toString();
         pass = User_Account_Edit_Pass.getText().toString();

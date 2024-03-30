@@ -117,7 +117,8 @@ public class User_Account_Order_Detail extends AppCompatActivity {
         Time();
         pg = new ProgressDialog(User_Account_Order_Detail.this);
         pg.setTitle("Loading..... ");
-        pg.setMessage("Please wait Deleting Order ....");
+        pg.setMessage("Please wait Track Order ....");
+        pg.setIcon(R.drawable.logo);
         pg.setCanceledOnTouchOutside(false);
         pg.show();
         getData();

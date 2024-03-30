@@ -31,6 +31,7 @@ public class User_Product_Filter extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_product_filter);
+
         burger=findViewById(R.id.Admin_Product_Filter_Burger_Radio);
         pizza=findViewById(R.id.Admin_Product_Filter_Pizza_Radio);
         combo=findViewById(R.id.Admin_Product_Filter_Combo_Radio);

@@ -53,9 +53,11 @@ public class User_Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
+
         User_Login_Progressbar = new ProgressDialog(this);
         User_Login_Progressbar.setTitle("Loading..... ");
         User_Login_Progressbar.setMessage("Login Your Account ... ");
+        User_Login_Progressbar.setIcon(R.drawable.logo);
         User_Login_Progressbar.setCanceledOnTouchOutside(false);
         User_Login_Button = findViewById(R.id.User_Login_Button);
         User_Login_ID=findViewById(R.id.User_Login_ID);

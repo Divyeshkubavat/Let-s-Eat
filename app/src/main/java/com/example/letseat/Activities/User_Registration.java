@@ -64,9 +64,11 @@ public class User_Registration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_registration);
+
         User_Registration_Progressbar = new ProgressDialog(this);
         User_Registration_Progressbar.setTitle("Loading..... ");
-        User_Registration_Progressbar.setMessage("UID will send to your email .... ");
+        User_Registration_Progressbar.setMessage("Please wait register your account .... ");
+        User_Registration_Progressbar.setIcon(R.drawable.logo);
         User_Registration_Progressbar.setCanceledOnTouchOutside(false);
         User_registration_Animation = findViewById(R.id.User_Registration_Animation);
         User_Registration_Fullname = findViewById(R.id.User_Registration_Fullname);

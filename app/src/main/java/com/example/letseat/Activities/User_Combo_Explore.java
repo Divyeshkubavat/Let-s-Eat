@@ -46,6 +46,7 @@ public class User_Combo_Explore extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_combo_explore);
+
         User_Combo_Explore_Searchview = findViewById(R.id.User_Combo_Explore_Searchview);
         User_Combo_Explore_Recyclerview=findViewById(R.id.User_Combo_Explore_Recyclerview);
         User_Combo_Explore_Filter=findViewById(R.id.User_Combo_Explore_Filter);
@@ -62,6 +63,7 @@ public class User_Combo_Explore extends AppCompatActivity {
         pg = new ProgressDialog(User_Combo_Explore.this);
         pg.setTitle("Loading..... ");
         pg.setMessage("Please wait we fetch your data... ");
+        pg.setIcon(R.drawable.logo);
         pg.setCanceledOnTouchOutside(false);
         pg.show();
 

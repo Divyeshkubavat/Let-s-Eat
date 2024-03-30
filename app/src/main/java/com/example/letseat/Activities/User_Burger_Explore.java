@@ -46,6 +46,7 @@ public class User_Burger_Explore extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_burger_explore);
+
         User_Burger_Explore_Searchview = findViewById(R.id.User_Burger_Explore_Searchview);
         User_Burger_Explore_Recyclerview=findViewById(R.id.User_burger_Explore_Recyclerview);
         User_burger_Explore_Filter=findViewById(R.id.User_burger_Explore_Filter);
@@ -56,6 +57,7 @@ public class User_Burger_Explore extends AppCompatActivity {
         pg = new ProgressDialog(User_Burger_Explore.this);
         pg.setTitle("Loading..... ");
         pg.setMessage("Please wait we fetch your data... ");
+        pg.setIcon(R.drawable.logo);
         pg.setCanceledOnTouchOutside(false);
         pg.show();
         setProduct();

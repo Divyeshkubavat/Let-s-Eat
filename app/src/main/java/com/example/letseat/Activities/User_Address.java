@@ -43,9 +43,11 @@ public class User_Address extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_address);
+
         pg = new ProgressDialog(this);
         pg.setTitle("Loading..... ");
         pg.setMessage("Address Recognise ... ");
+        pg.setIcon(R.drawable.logo);
         pg.setCanceledOnTouchOutside(false);
         User_Address_Address =findViewById(R.id.User_Address_Address);
         User_Address_DOB = findViewById(R.id.User_Address_DOB);

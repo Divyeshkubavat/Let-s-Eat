@@ -73,6 +73,7 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_product_payment);
+
         Checkout.preload(getApplicationContext());
         User_Product_Payment_Code_Check=findViewById(R.id.User_Product_Payment_Code_Check);
         User_Product_Payment_Recyclerview=findViewById(R.id.User_Product_Payment_Recyclerview);
@@ -92,6 +93,7 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
         pg = new ProgressDialog(User_Product_Payment.this);
         pg.setTitle("Loading..... ");
         pg.setMessage("Please wait we fetch your data... ");
+        pg.setIcon(R.drawable.logo);
         pg.setCanceledOnTouchOutside(false);
         pg.show();
         setData();

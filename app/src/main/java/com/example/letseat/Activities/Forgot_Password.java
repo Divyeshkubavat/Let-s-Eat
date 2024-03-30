@@ -61,6 +61,7 @@ public class Forgot_Password extends AppCompatActivity {
         pg = new ProgressDialog(this);
         pg.setMessage("Sending Email");
         pg.setTitle("Loading");
+        pg.setIcon(R.drawable.logo);
         pg.setCanceledOnTouchOutside(true);
         setContentView(R.layout.activity_forgot_password);
         email=findViewById(R.id.Email);
