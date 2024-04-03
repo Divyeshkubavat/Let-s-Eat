@@ -48,7 +48,6 @@ public class User_Account_Payment_History extends AppCompatActivity {
         setContentView(R.layout.activity_user_account_payment_history);
 
         User_Account_Payment_History_Recyclerview=findViewById(R.id.User_Account_Payment_History_Recyclerview);
-        User_Account_Payment_History_Searchview=findViewById(R.id.User_Account_Payment_History_Searchview);
         payment_lottie=findViewById(R.id.payment_lottie);
         retrofitServices = new RetrofitServices();
         userApi = retrofitServices.getRetrofit().create(UserApi.class);
