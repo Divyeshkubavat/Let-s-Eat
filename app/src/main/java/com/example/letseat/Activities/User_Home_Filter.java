@@ -63,6 +63,19 @@ public class User_Home_Filter extends AppCompatActivity {
                 pg.dismiss();
             }
         },1500);
+        User_Home_Filter_Searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                search(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                search(newText);
+                return false;
+            }
+        });
     }
 
     private void setData(){
@@ -76,6 +89,24 @@ public class User_Home_Filter extends AppCompatActivity {
                 list= (ArrayList<Product>) response.body();
                 adapter=new productAdapterExplore(list,User_Home_Filter.this);
                 User_home_Filter_Recyclerview.setLayoutManager(new LinearLayoutManager(User_Home_Filter.this,LinearLayoutManager.VERTICAL,false));
+                adapter.notifyDataSetChanged();
+                User_home_Filter_Recyclerview.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+
+            }
+        });
+    }
+    private void search(String key){
+        userApi.searchProduct(key).enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                list= (ArrayList<Product>) response.body();
+                adapter=new productAdapterExplore(list,User_Home_Filter.this);
+                User_home_Filter_Recyclerview.setLayoutManager(new LinearLayoutManager(  User_Home_Filter.this,LinearLayoutManager.VERTICAL,false));
                 adapter.notifyDataSetChanged();
                 User_home_Filter_Recyclerview.setAdapter(adapter);
 
