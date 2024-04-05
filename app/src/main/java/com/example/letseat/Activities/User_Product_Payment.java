@@ -58,6 +58,7 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
     UserApi userApi;
     paymentProductAdapter adapter;
     ArrayList<Cart> list;
+    double t1;
     RecyclerView User_Product_Payment_Recyclerview;
     RadioButton User_Product_Payment_Cash_Delivery_Radio,User_Product_Payment_Razorpay;
     TextInputEditText User_Product_Payment_Address,User_Product_Payment_Apply_Code;
@@ -288,16 +289,21 @@ public class User_Product_Payment extends AppCompatActivity implements PaymentRe
         userApi.verify(User_Product_Payment_Apply_Code.getText().toString()).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+
                 code = Double.parseDouble(response.body());
                 if(code==0){
                     Toast.makeText(User_Product_Payment.this, "Sorry Code Is Expire", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(User_Product_Payment.this, "Congratulations you Got Discount of "+String.valueOf(code)+"%", Toast.LENGTH_SHORT).show();
-                   double temp = total*code/100;
+                    User_Product_Payment_Apply_Code.setClickable(false);
+                    User_Product_Payment_Apply_Code.setFocusable(false);
+                    User_Product_Payment_Code_Check.setClickable(false);
+                    User_Product_Payment_Code_Check.setFocusable(false);
+                    double temp = total*code/100;
                    User_Product_Payment_Discount.setText(String.valueOf(temp));
                     total=total-temp;
-                    finalTotal=total+deliveryCharge;
-                    User_Product_Payment_Final_Total.setText(String.valueOf(total+deliveryCharge));
+                    finalTotal=t1+deliveryCharge;
+                    User_Product_Payment_Final_Total.setText(String.valueOf(t1+deliveryCharge));
                 }
 
             }
