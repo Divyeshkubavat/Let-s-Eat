@@ -29,7 +29,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class User_Home_Filter extends AppCompatActivity {
-
     SearchView User_Home_Filter_Searchview;
     RecyclerView User_home_Filter_Recyclerview;
     RetrofitServices retrofitServices;
@@ -37,6 +36,7 @@ public class User_Home_Filter extends AppCompatActivity {
     productAdapterExplore adapter;
     ArrayList<Product> list;
     ProgressDialog pg;
+    int categoryId=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,7 @@ public class User_Home_Filter extends AppCompatActivity {
     private void setData(){
         Intent i = getIntent();
         String type=i.getStringExtra("type");
-        int categoryId=i.getIntExtra("categoryId",0);
+        categoryId=i.getIntExtra("categoryId",0);
         double price=i.getDoubleExtra("price",0);
         userApi.filterProduct(categoryId,type,price).enqueue(new Callback<List<Product>>() {
             @Override
@@ -101,22 +101,42 @@ public class User_Home_Filter extends AppCompatActivity {
         });
     }
     private void search(String key){
-        userApi.searchProduct(key).enqueue(new Callback<List<Product>>() {
-            @Override
-            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
-                list= (ArrayList<Product>) response.body();
-                adapter=new productAdapterExplore(list,User_Home_Filter.this);
-                User_home_Filter_Recyclerview.setLayoutManager(new LinearLayoutManager(  User_Home_Filter.this,LinearLayoutManager.VERTICAL,false));
-                adapter.notifyDataSetChanged();
-                User_home_Filter_Recyclerview.setAdapter(adapter);
+        if(categoryId!=0){
+            userApi.searchProduct(key,categoryId).enqueue(new Callback<List<Product>>() {
+                @Override
+                public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                    list= (ArrayList<Product>) response.body();
+                    adapter=new productAdapterExplore(list,User_Home_Filter.this);
+                    User_home_Filter_Recyclerview.setLayoutManager(new LinearLayoutManager(  User_Home_Filter.this,LinearLayoutManager.VERTICAL,false));
+                    adapter.notifyDataSetChanged();
+                    User_home_Filter_Recyclerview.setAdapter(adapter);
 
-            }
+                }
 
-            @Override
-            public void onFailure(Call<List<Product>> call, Throwable t) {
+                @Override
+                public void onFailure(Call<List<Product>> call, Throwable t) {
 
-            }
-        });
+                }
+            });
+        }else {
+            userApi.searchProduct(key).enqueue(new Callback<List<Product>>() {
+                @Override
+                public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                    list= (ArrayList<Product>) response.body();
+                    adapter=new productAdapterExplore(list,User_Home_Filter.this);
+                    User_home_Filter_Recyclerview.setLayoutManager(new LinearLayoutManager(  User_Home_Filter.this,LinearLayoutManager.VERTICAL,false));
+                    adapter.notifyDataSetChanged();
+                    User_home_Filter_Recyclerview.setAdapter(adapter);
+
+                }
+
+                @Override
+                public void onFailure(Call<List<Product>> call, Throwable t) {
+
+                }
+            });
+        }
+
     }
 
     @Override

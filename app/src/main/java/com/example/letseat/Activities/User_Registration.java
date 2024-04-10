@@ -110,7 +110,7 @@ public class User_Registration extends AppCompatActivity {
         }
         if(User_Registration_Mobile.length() < 0)
         {
-            User_Registration_Mobile.setError("Mobile number is Requird");
+            User_Registration_Mobile.setError("Mobile number is Required");
             return  false;
         } else if (User_Registration_Mobile.length() < 10) {
             User_Registration_Mobile.setError("Mobile Number Must Be 10 Digits");
@@ -118,18 +118,18 @@ public class User_Registration extends AppCompatActivity {
         }
         if(User_Registration_Email.length() == 0)
         {
-            User_Registration_Email.setError("Email Is Requird Field");
+            User_Registration_Email.setError("Email Is Required Field");
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(User_Registration_Email.getText().toString()).matches()) {
-            User_Registration_Email.setError("Email Must Be In Email Formate");
+            User_Registration_Email.setError("Email Must Be In Email Format");
             return false;
         }
         if(User_Registration_Pass.length() == 0)
         {
-            User_Registration_Pass.setError("Password Is Requird Field");
+            User_Registration_Pass.setError("Password Is Required Field");
             return false;
         } else if (User_Registration_Pass.length() < 8) {
-            User_Registration_Pass.setError("Password Must Be * Character");
+            User_Registration_Pass.setError("Password Must Be 8 Character");
             return false;
         }
         return  true;
